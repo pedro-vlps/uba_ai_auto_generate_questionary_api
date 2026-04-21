@@ -12,8 +12,7 @@ CREATE TABLE IF NOT EXISTS questions (
     explicacao_b TEXT,
     explicacao_c TEXT,
     explicacao_d TEXT,
-    resposta_certa CHAR(1) NOT NULL CHECK (resposta_certa IN ('A', 'B', 'C', 'D')),
-    questao_completa TEXT NOT NULL
+    resposta_certa CHAR(1) NOT NULL CHECK (resposta_certa IN ('A', 'B', 'C', 'D'))
 );
 
 -- Tabela de perfis

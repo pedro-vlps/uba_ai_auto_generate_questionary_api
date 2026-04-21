@@ -1,3 +1,4 @@
+"""Pydantic schemas for question data validation and serialization."""
 from typing import Optional
 from uuid import UUID
 
@@ -5,6 +6,7 @@ from pydantic import BaseModel
 
 
 class QuestionsBase(BaseModel):
+    """Base schema for multiple-choice question data."""
     pergunta: str
     resposta_a: str
     resposta_b: str
@@ -37,6 +39,7 @@ class QuestionsBase(BaseModel):
 
 
 class QuestionsUpdate(BaseModel):
+    """Schema for partial question updates."""
     pergunta: Optional[str] = None
     resposta_a: Optional[str] = None
     resposta_b: Optional[str] = None
@@ -60,10 +63,12 @@ class QuestionsUpdate(BaseModel):
 
 
 class QuestionsPost(QuestionsBase):
+    """Schema for creating a new question."""
     pass
 
 
 class QuestionsGet(QuestionsBase):
+    """Schema for retrieving question data with ID."""
     id: UUID
 
     class Config:

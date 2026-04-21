@@ -9,6 +9,7 @@ class Base(DeclarativeBase):
 
 
 class Profiles(Base):
+    """User profile model representing different user roles or access levels."""
     __tablename__ = 'profiles'
     __table_args__ = (
         PrimaryKeyConstraint('id', name='profile_pkey'),
@@ -23,6 +24,7 @@ class Profiles(Base):
 
 
 class Questions(Base):
+    """Multiple-choice question model for anatomy exam questions."""
     __tablename__ = 'questions'
     __table_args__ = (
         CheckConstraint("resposta_certa = ANY (ARRAY['A'::bpchar, 'B'::bpchar, 'C'::bpchar, 'D'::bpchar])", name='questions_resposta_certa_check'),
@@ -44,6 +46,7 @@ class Questions(Base):
 
 
 class Users(Base):
+    """User authentication model with encrypted credentials."""
     __tablename__ = 'users'
     __table_args__ = (
         ForeignKeyConstraint(['profile_id'], ['profiles.id'], name='users_profile_id_fkey'),

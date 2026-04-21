@@ -1,3 +1,4 @@
+"""Route declaration module for API endpoints configuration."""
 from typing import Any
 
 from src.models.models import Profiles, Questions, Users
@@ -11,7 +12,7 @@ from src.schemas import (
     QuestionsPost,
     QuestionsUpdate,
     UsersBase,
-    UsersGet,
+    UsersNoPasswordResponse,
     UsersPost,
     UsersUpdate,
 )
@@ -71,11 +72,11 @@ routes_declaration: list[dict[str, Any]] = [
         "auth_callback": None,
         "request_post_schema": UsersPost,
         "request_update_schema": UsersUpdate,
-        "response_get_schema": UsersGet,
-        "response_get_by_id_schema": UsersGet,
-        "response_post_schema": UsersGet,
+        "response_get_schema": UsersNoPasswordResponse,
+        "response_get_by_id_schema": UsersNoPasswordResponse,
+        "response_post_schema": UsersNoPasswordResponse,
         "response_delete_schema": None,
-        "response_patch_schema": UsersGet,
+        "response_patch_schema": UsersNoPasswordResponse,
         "enable_get": True,
         "enable_get_by_id": True,
         "enable_post": True,

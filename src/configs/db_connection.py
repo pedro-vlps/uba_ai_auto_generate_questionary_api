@@ -6,7 +6,7 @@ from src.configs.configs import settings
 # from src.middlewares.db_audit_logs import set_current_user_id
 
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    settings.database_url,
     echo=True
 )
 

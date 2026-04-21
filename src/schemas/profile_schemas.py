@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 
 class ProfileBase(BaseModel):
+    """Base schema for user profile data."""
     name: str
     counter_limit: Optional[int] = None
 
@@ -19,6 +20,7 @@ class ProfileBase(BaseModel):
 
 
 class ProfileUpdate(BaseModel):
+    """Schema for partial profile updates."""
     name: Optional[str] = None
     counter_limit: Optional[int] = None
 
@@ -33,10 +35,12 @@ class ProfileUpdate(BaseModel):
 
 
 class ProfilePost(ProfileBase):
+    """Schema for creating a new profile."""
     pass
 
 
 class ProfileGet(ProfileBase):
+    """Schema for retrieving profile data with ID."""
     id: UUID
 
     class Config:
