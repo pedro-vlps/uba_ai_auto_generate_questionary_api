@@ -1,0 +1,1 @@
+from src.routers.ai_anatomy_router import ai_anatomy_router
