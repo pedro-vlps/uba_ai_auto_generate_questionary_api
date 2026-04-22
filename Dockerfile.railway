@@ -1,0 +1,26 @@
+FROM python:3.11-slim
+
+# Instalar postgres + dependências
+RUN apt-get update && apt-get install -y \
+    postgresql postgresql-contrib \
+    gcc libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Criar diretório da app
+WORKDIR /app
+
+# Copiar dependências
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código
+COPY . .
+
+# Copiar script de start
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+# Porta (Railway usa $PORT)
+ENV PORT=8000
+
+CMD ["/start.sh"]
