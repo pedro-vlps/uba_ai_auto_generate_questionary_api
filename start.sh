@@ -5,7 +5,10 @@ echo "🚀 Starting PostgreSQL..."
 service postgresql start
 
 echo "⏳ Waiting for PostgreSQL..."
-sleep 5
+until pg_isready -h localhost -p 5432; do
+  echo "Waiting for postgres..."
+  sleep 2
+done
 
 echo "🛠️ Setting up database..."
 
