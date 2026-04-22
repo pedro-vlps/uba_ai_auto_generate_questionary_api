@@ -16,16 +16,21 @@ async def jwt_checker(request: Request, call_next):
     Returns:
         Response: Either an error response if token is invalid, or the next handler's response
     """
+    if request.method == "OPTIONS":
+        return await call_next(request)
+
     request_token = request.headers.get("authorization")
 
-    _string, token = request_token.split(" ")
-
-    if not token and not request.url.path in BYPASS_ROUTES:
+    if not request_token and not request.url.path in BYPASS_ROUTES:
         return JSONResponse(status_code=401, content={"detail": "Token is required"})
+
+    token = None
+    if request_token:
+        _string, token = request_token.split(" ")
 
     if (
         not request.url.path in BYPASS_ROUTES
-        and request.method != "OPTIONS"
+        and token
     ):
         try:
             JWTUtils.decode_jwt(token)

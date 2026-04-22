@@ -38,11 +38,11 @@ class Questions(Base):
     resposta_c: Mapped[str] = mapped_column(Text, nullable=False)
     resposta_d: Mapped[str] = mapped_column(Text, nullable=False)
     resposta_certa: Mapped[str] = mapped_column(CHAR(1), nullable=False)
-    questao_completa: Mapped[str] = mapped_column(Text, nullable=False)
     explicacao_a: Mapped[Optional[str]] = mapped_column(Text)
     explicacao_b: Mapped[Optional[str]] = mapped_column(Text)
     explicacao_c: Mapped[Optional[str]] = mapped_column(Text)
     explicacao_d: Mapped[Optional[str]] = mapped_column(Text)
+    # subject: Mapped[str] = mapped_column(Text, nullable=False)
 
 
 class Users(Base):
