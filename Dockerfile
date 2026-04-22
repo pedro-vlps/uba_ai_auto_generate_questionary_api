@@ -14,7 +14,7 @@ RUN poetry config virtualenvs.create false && poetry install --no-root --no-cach
 
 FROM python:3.13-slim
 
-RUN mkdir - /usr/src/app
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/local/lib/python3.13/site-packages /usr/local/lib/python3.13/site-packages
