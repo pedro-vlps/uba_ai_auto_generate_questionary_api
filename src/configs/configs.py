@@ -19,7 +19,7 @@ class Settings(BaseSettings):
         return (
             f"postgresql+asyncpg://"
             f"{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
-            f"@db:5432/{self.POSTGRES_DB}"
+            f"@localhost:5432/{self.POSTGRES_DB}"
         )
 
     class Config:
