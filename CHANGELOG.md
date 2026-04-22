@@ -1,4 +1,8 @@
-﻿## v0.2.0
+﻿## v0.2.1
+
+- Added Railsway deploy files
+
+## v0.2.0
 
 - Now, All questions generated are being saved on questions table
 - Fixed CORS parameters and middlewares configurations
@@ -10,6 +14,7 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
 
 
 
