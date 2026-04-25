@@ -13,7 +13,6 @@ class QuestionsBase(BaseModel):
     resposta_c: str
     resposta_d: str
     resposta_certa: str
-    questao_completa: str
     explicacao_a: Optional[str] = None
     explicacao_b: Optional[str] = None
     explicacao_c: Optional[str] = None
@@ -29,7 +28,6 @@ class QuestionsBase(BaseModel):
                 "resposta_c": "Brasília",
                 "resposta_d": "Belo Horizonte",
                 "resposta_certa": "C",
-                "questao_completa": "Pergunta: Qual é a capital do Brasil?\nA) São Paulo\nB) Rio de Janeiro\nC) Brasília\nD) Belo Horizonte",
                 "explicacao_a": "São Paulo é a maior cidade, mas não a capital.",
                 "explicacao_b": "Rio de Janeiro foi a capital antiga.",
                 "explicacao_c": "Brasília é a capital atual.",
@@ -46,7 +44,6 @@ class QuestionsUpdate(BaseModel):
     resposta_c: Optional[str] = None
     resposta_d: Optional[str] = None
     resposta_certa: Optional[str] = None
-    questao_completa: Optional[str] = None
     explicacao_a: Optional[str] = None
     explicacao_b: Optional[str] = None
     explicacao_c: Optional[str] = None
@@ -64,8 +61,6 @@ class QuestionsUpdate(BaseModel):
 
 class QuestionsPost(QuestionsBase):
     """Schema for creating a new question."""
-    pass
-
 
 class QuestionsGet(QuestionsBase):
     """Schema for retrieving question data with ID."""
@@ -82,7 +77,6 @@ class QuestionsGet(QuestionsBase):
                 "resposta_c": "Brasília",
                 "resposta_d": "Belo Horizonte",
                 "resposta_certa": "C",
-                "questao_completa": "Pergunta: Qual é a capital do Brasil?\nA) São Paulo\nB) Rio de Janeiro\nC) Brasília\nD) Belo Horizonte",
                 "explicacao_a": "São Paulo é a maior cidade, mas não a capital.",
                 "explicacao_b": "Rio de Janeiro foi a capital antiga.",
                 "explicacao_c": "Brasília é a capital atual.",

@@ -1,11 +1,12 @@
 """Controller for AI-generated anatomy questions."""
+
 import json
-from api_crud_generate_libary.services.service import Service
+import random
 
 from src.services.ai_anatomy_service import AIAnatomyService
-from src.models import Questions
+from src.services.questions_service import QuestionsService, questions_service
 
-questions_service = Service(Questions)
+from src.helpers.questions_text import UBA_DIVERSITY_MODES
 
 
 class AIAnatomyController:
@@ -22,9 +23,13 @@ class AIAnatomyController:
         Returns:
             dict: JSON response containing the generated question data
         """
-        response = await AIAnatomyService.generate_response(parameter)
+        last_questions = await QuestionsService.get_last_three_questions(db)
+        response = await AIAnatomyService.generate_response(
+            parameter, random.choice(UBA_DIVERSITY_MODES), last_questions
+        )
 
         json_response = json.loads(response.output[0].content[0].text)
+        json_response["topic"] = parameter
 
         await questions_service.create(json_response, db)
 
