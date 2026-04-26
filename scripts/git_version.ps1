@@ -171,7 +171,7 @@ if ($gerarVersao -eq "y") {
     Set-Content -Path $changelogPath -Value $novoConteudo -Encoding UTF8
 
     # ===== CHANGELOG COMMIT =====
-    git add .
+    git add .\CHANGELOG.md .\pyproject.toml
     git commit -m "CHANGELOG.md atualization for $tag"
 
     # ===== TAG =====

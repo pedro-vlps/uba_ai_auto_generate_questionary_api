@@ -7,31 +7,31 @@ from pydantic import BaseModel
 
 class QuestionsBase(BaseModel):
     """Base schema for multiple-choice question data."""
-    pergunta: str
-    resposta_a: str
-    resposta_b: str
-    resposta_c: str
-    resposta_d: str
-    resposta_certa: str
-    explicacao_a: Optional[str] = None
-    explicacao_b: Optional[str] = None
-    explicacao_c: Optional[str] = None
-    explicacao_d: Optional[str] = None
+    question: str
+    answer_a: str
+    answer_b: str
+    answer_c: str
+    answer_d: str
+    correct_answer: str
+    explanation_a: Optional[str] = None
+    explanation_b: Optional[str] = None
+    explanation_c: Optional[str] = None
+    explanation_d: Optional[str] = None
 
     class Config:
         from_attributes = True
         json_schema_extra = {
             "example": {
-                "pergunta": "Qual é a capital do Brasil?",
-                "resposta_a": "São Paulo",
-                "resposta_b": "Rio de Janeiro",
-                "resposta_c": "Brasília",
-                "resposta_d": "Belo Horizonte",
-                "resposta_certa": "C",
-                "explicacao_a": "São Paulo é a maior cidade, mas não a capital.",
-                "explicacao_b": "Rio de Janeiro foi a capital antiga.",
-                "explicacao_c": "Brasília é a capital atual.",
-                "explicacao_d": "Belo Horizonte é uma cidade importante, mas não a capital."
+                "question": "Qual é a capital do Brasil?",
+                "answer_a": "São Paulo",
+                "answer_b": "Rio de Janeiro",
+                "answer_c": "Brasília",
+                "answer_d": "Belo Horizonte",
+                "correct_answer": "C",
+                "explanation_a": "São Paulo é a maior cidade, mas não a capital.",
+                "explanation_b": "Rio de Janeiro foi a capital antiga.",
+                "explanation_c": "Brasília é a capital atual.",
+                "explanation_d": "Belo Horizonte é uma cidade importante, mas não a capital."
             }
         }
 
@@ -65,21 +65,34 @@ class QuestionsPost(QuestionsBase):
 class QuestionsGet(QuestionsBase):
     """Schema for retrieving question data with ID."""
     id: UUID
+    institution_id: UUID
 
     class Config:
         from_attributes = True
         json_schema_extra = {
             "example": {
                 "id": "123e4567-e89b-12d3-a456-426614174000",
-                "pergunta": "Qual é a capital do Brasil?",
-                "resposta_a": "São Paulo",
-                "resposta_b": "Rio de Janeiro",
-                "resposta_c": "Brasília",
-                "resposta_d": "Belo Horizonte",
-                "resposta_certa": "C",
-                "explicacao_a": "São Paulo é a maior cidade, mas não a capital.",
-                "explicacao_b": "Rio de Janeiro foi a capital antiga.",
-                "explicacao_c": "Brasília é a capital atual.",
-                "explicacao_d": "Belo Horizonte é uma cidade importante, mas não a capital."
+                "question": "Qual é a capital do Brasil?",
+                "answer_a": "São Paulo",
+                "answer_b": "Rio de Janeiro",
+                "answer_c": "Brasília",
+                "answer_d": "Belo Horizonte",
+                "correct_answer": "C",
+                "explanation_a": "São Paulo é a maior cidade, mas não a capital.",
+                "explanation_b": "Rio de Janeiro foi a capital antiga.",
+                "explanation_c": "Brasília é a capital atual.",
+                "explanation_d": "Belo Horizonte é uma cidade importante, mas não a capital."
+            }
+        }
+
+class OnlyQuestionsGetSchema(BaseModel):
+    """Schema for retrieving question data without ID."""
+    question: str
+
+    class Config:
+        from_attributes = True
+        json_schema_extra = {
+            "example": {
+                "question": "Qual é a capital do Brasil?"
             }
         }

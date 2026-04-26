@@ -13,7 +13,6 @@ class Settings(BaseSettings):
     FERNET_KEY: str
     JWT_SECRET_KEY: str
     ALGORITHM: str
-    EXPIRATION_MINUTES: int
 
     @property
     def database_url(self):

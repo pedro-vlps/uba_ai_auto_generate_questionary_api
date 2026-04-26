@@ -13,23 +13,27 @@ class AIAnatomyController:
     """Controller for handling AI anatomy question generation."""
 
     @staticmethod
-    async def generate_question(parameter: str, db):
+    async def generate_question(parameter: str, db, institution_id: str):
         """
         Generate an anatomy question using AI based on the specified parameter.
 
         Args:
             parameter: The anatomy topic parameter (e.g., Neuro, Esplacno, Locomotor)
+            institution_id: The institution ID from the request header
 
         Returns:
             dict: JSON response containing the generated question data
         """
+        used_subject = random.choice(UBA_DIVERSITY_MODES)
         last_questions = await QuestionsService.get_last_three_questions(db)
         response = await AIAnatomyService.generate_response(
-            parameter, random.choice(UBA_DIVERSITY_MODES), last_questions
+            parameter, used_subject, last_questions
         )
 
-        json_response = json.loads(response.output[0].content[0].text)
+        json_response = json.loads(response["output"][0]["content"][0]["text"]) #response.output[0].content[0].text)
         json_response["topic"] = parameter
+        json_response["subject"] = used_subject
+        json_response["institution_id"] = institution_id
 
         await questions_service.create(json_response, db)
 

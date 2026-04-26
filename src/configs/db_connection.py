@@ -3,7 +3,7 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 
 from src.configs.configs import settings
-# from src.middlewares.db_audit_logs import set_current_user_id
+# from src.utils.db_institution_define import set_default_institution
 
 engine = create_async_engine(
     settings.database_url,
@@ -18,10 +18,10 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """Provide a database session for dependency injection."""
     session: AsyncSession = async_session()
 
-    # token = request.headers.get("Authorization")
-    # user_id = decode_token(token)  if token else None
-
-    # await set_current_user_id(session, user_id)
+    # await set_default_institution(
+    #     session=session,
+    #     institution_id=request.headers.get("x-institution-id")
+    # )
 
     try:
         yield session
