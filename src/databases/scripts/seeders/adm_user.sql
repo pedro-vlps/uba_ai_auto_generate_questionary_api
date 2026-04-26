@@ -1,0 +1,2 @@
+INSERT INTO users (name, nickname, password, global_role) VALUES
+('gAAAAABp7VOh59Cz3DE7sJvjma5iCT6Rn8DY4Jt4cjxjHjM21nxj2V2Fa5q9aFVX3SP8RUyD8Ws4GL6FNOSR3R857hQHlyUOa4JTYadjcGCPFBLDssjOyU8=', 'gAAAAABp595uSxmwADP5s5-7YTcAlaF13wIDXtvoRyqsJrrM547YWzI_fE2pHQwKkExWbOyHgQMDkNZ-hnH0fnv6Bb0kkTt0LA==', 'gAAAAABp595uau-RAna_kTmaktXTTsx-azsuT482nawgwYE-ehCWTiaJhQUGkMVqk32S2rBSaJwvJBsmAm6ym1CneEJcWu8htw==', 'Admin');

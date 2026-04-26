@@ -38,7 +38,8 @@ ALTER TABLE questions
 RENAME COLUMN resposta_certa TO correct_answer;
 
 ALTER TABLE users
-ADD COLUMN name VARCHAR(100) NOT NULL DEFAULT 'sem nome',
+ADD COLUMN name TEXT NOT NULL DEFAULT 'sem nome',
+ADD COLUMN global_role VARCHAR(50) NOT NULL DEFAULT 'User',
 ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT NOW(),
 ADD COLUMN updated_at TIMESTAMP;
 
