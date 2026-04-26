@@ -1,3 +1,5 @@
 .env
+.env.production
+/docs/*.bkp
 __pycache__/
 src/databases/.cache/

@@ -1,30 +1,39 @@
 """Controller for AI-generated anatomy questions."""
+
 import json
-from api_crud_generate_libary.services.service import Service
+import random
 
 from src.services.ai_anatomy_service import AIAnatomyService
-from src.models import Questions
+from src.services.questions_service import QuestionsService, questions_service
 
-questions_service = Service(Questions)
+from src.helpers.questions_text import UBA_DIVERSITY_MODES
 
 
 class AIAnatomyController:
     """Controller for handling AI anatomy question generation."""
 
     @staticmethod
-    async def generate_question(parameter: str, db):
+    async def generate_question(parameter: str, db, institution_id: str):
         """
         Generate an anatomy question using AI based on the specified parameter.
 
         Args:
             parameter: The anatomy topic parameter (e.g., Neuro, Esplacno, Locomotor)
+            institution_id: The institution ID from the request header
 
         Returns:
             dict: JSON response containing the generated question data
         """
-        response = await AIAnatomyService.generate_response(parameter)
+        used_subject = random.choice(UBA_DIVERSITY_MODES)
+        last_questions = await QuestionsService.get_last_three_questions(db)
+        response = await AIAnatomyService.generate_response(
+            parameter, used_subject, last_questions
+        )
 
-        json_response = json.loads(response.output[0].content[0].text)
+        json_response = json.loads(response["output"][0]["content"][0]["text"]) #response.output[0].content[0].text)
+        json_response["topic"] = parameter
+        json_response["subject"] = used_subject
+        json_response["institution_id"] = institution_id
 
         await questions_service.create(json_response, db)
 

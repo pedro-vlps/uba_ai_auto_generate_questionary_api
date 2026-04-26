@@ -1,14 +1,15 @@
 """Main API File"""
 from fastapi import FastAPI, Depends
-from fastapi.security import HTTPBearer
+from fastapi.security import HTTPBearer, APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
-from api_crud_generate_libary.routers.router import SqlRouter
+from api_crud_generate_libary.routers.router import Router
 
-from src.routers import ai_anatomy_router, auth_router
+from src.routers import ai_anatomy_router, auth_router, users_router
 from src.models import routes_declaration
 from src.middleware.jwt_middleware import jwt_checker
 
 security = HTTPBearer(auto_error=False)
+institution_id = APIKeyHeader(name="x-institution-id", auto_error=False)
 
 app = FastAPI()
 
@@ -33,8 +34,14 @@ app.include_router(
     tags=["Authentication"],
 )
 
+app.include_router(
+    users_router,
+    prefix="/users",
+    tags=["Users"],
+)
+
 for route in routes_declaration:
-    item = SqlRouter(
+    item = Router(
         model_class=route["model_class"],
         standard_schema=route["standard_schema"],
         db_session=route["db_session"],
@@ -50,7 +57,7 @@ for route in routes_declaration:
         use_post=route["enable_post"],
         use_delete=route["enable_delete"],
         use_patch=route["enable_patch"],
-        auth_callback=security,
+        auth_callback=[security, institution_id],
         join_parameters=route["join_parameters"],
         second_level_join_parameters=route["second_level_join_parameters"],
     )
@@ -63,5 +70,5 @@ app.include_router(
     ai_anatomy_router,
     prefix="/anatomy",
     tags=["Anatomy"],
-    dependencies=[Depends(security)]
+    dependencies=[Depends(security), Depends(institution_id) ]
 )

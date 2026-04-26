@@ -9,17 +9,19 @@ from src.utils.fernet_utils import FernetUtils
 
 class UsersBase(BaseModel):
     """Base schema for user data with encrypted fields."""
+    name: str
     nickname: str
     password: str
-    profile_id: Optional[UUID] = None
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
 
     class Config:
         from_attributes = True
         json_schema_extra = {
             "example": {
-                "nickname": "johndoe",
-                "password": "securepassword123",
-                "profile_id": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "Pedro Vieira Admin",
+                "nickname": "JokerVLp",
+                "password": "123456"
             }
         }
 
@@ -56,7 +58,7 @@ class UsersUpdate(BaseModel):
 
 class UsersPost(UsersBase):
     """Schema for creating a new user with encrypted fields."""
-    @field_validator("nickname", "password", mode="before")
+    @field_validator("name", "nickname", "password", mode="before")
     @classmethod
     def encrypt_fields(cls, value: str) -> str:
         """
@@ -119,24 +121,20 @@ class UsersGet(UsersBase):
 class UsersNoPasswordResponse(BaseModel):
     """Schema for user response without password field."""
     id: UUID
+    name: str
     nickname: str
-    profile: Optional[ProfileGet] = None
 
     class Config:
         from_attributes = True
         json_schema_extra = {
             "example": {
                 "id": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "John Doe",
                 "nickname": "johndoe",
-                "profile": {
-                    "id": "123e4567-e89b-12d3-a456-426614174000",
-                    "name": "Admin",
-                    "counter_limit": 100,
-                },
             }
         }
 
-    @field_validator("nickname", mode="after")
+    @field_validator("name", "nickname", mode="after")
     @classmethod
     def decrypt_fields(cls, value: str) -> str:
         """

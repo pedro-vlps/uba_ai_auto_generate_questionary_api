@@ -1,5 +1,13 @@
 """Prompt templates for AI-generated anatomy questions."""
 
+UBA_DIVERSITY_MODES = [
+    "clinical_case",
+    "conceptual_reasoning",
+    "functional_analysis",
+    "lesion_analysis",
+    "comparative"
+]
+
 ANATOMY_QUESTION = (
     "You are a medical professor specialized in Human Anatomy and an expert "
     "in creating multiple-choice exam questions following the standards of "
@@ -21,6 +29,22 @@ ANATOMY_QUESTION = (
     "- Esplacno "
     "- Neuro "
 
+    "Diversity mode: {DIVERSITY_MODE}. "
+
+    "Diversity requirements: "
+    "- The question MUST follow the specified diversity mode. "
+    "- Vary the cognitive approach of the question. "
+    "- Possible approaches include: clinical case, conceptual reasoning, "
+    "functional analysis, lesion/injury interpretation, or comparison. "
+    "- Avoid repeating common exam patterns. "
+    "- Avoid predictable or template-based phrasing. "
+    "- Prefer less obvious anatomical relationships and scenarios. "
+    "- Ensure the question is structurally different from standard examples. "
+
+    "Anti-repetition constraint: "
+    "- Avoid generating questions similar to the following: "
+    "{RECENT_QUESTIONS} "
+
     "Requirements: "
     "- The question MUST be written in Rioplatense Spanish (Argentinian Spanish). "
     "- Follow UBA exam style: precise, conceptual, clinically relevant. "
@@ -35,16 +59,16 @@ ANATOMY_QUESTION = (
     "JSON structure (STRICT): "
 
     "{"
-    "\"pergunta\": \"<question text>\","
-    "\"resposta_a\": \"<option A>\","
-    "\"resposta_b\": \"<option B>\","
-    "\"resposta_c\": \"<option C>\","
-    "\"resposta_d\": \"<option D>\","
-    "\"explicacao_a\": \"<short explanation>\","
-    "\"explicacao_b\": \"<short explanation>\","
-    "\"explicacao_c\": \"<short explanation>\","
-    "\"explicacao_d\": \"<short explanation>\","
-    "\"resposta_certa\": \"<A|B|C|D>\""
+    "\"question\": \"<question text>\","
+    "\"answer_a\": \"<option A>\","
+    "\"answer_b\": \"<option B>\","
+    "\"answer_c\": \"<option C>\","
+    "\"answer_d\": \"<option D>\","
+    "\"explanation_a\": \"<short explanation>\","
+    "\"explanation_b\": \"<short explanation>\","
+    "\"explanation_c\": \"<short explanation>\","
+    "\"explanation_d\": \"<short explanation>\","
+    "\"correct_answer\": \"<A|B|C|D>\""
     "}"
 
     "Rules: "
@@ -58,16 +82,16 @@ ANATOMY_QUESTION = (
 
     "Example (do NOT reuse content): "
 
-    "{"
-    "\"pergunta\": \"¿Cuál estructura atraviesa el foramen oval?\","
-    "\"resposta_a\": \"Nervio óptico\","
-    "\"resposta_b\": \"Nervio mandibular\","
-    "\"resposta_c\": \"Arteria carótida interna\","
-    "\"resposta_d\": \"Nervio facial\","
-    "\"explicacao_a\": \"No pasa por el foramen oval.\","
-    "\"explicacao_b\": \"Es correcto, atraviesa el foramen oval.\","
-    "\"explicacao_c\": \"Pasa por el conducto carotídeo.\","
-    "\"explicacao_d\": \"Pasa por el foramen estilomastoideo.\","
-    "\"resposta_certa\": \"B\""
-    "}"
+    # "{"
+    # "\"question\": \"¿Cuál estructura atraviesa el foramen oval?\","
+    # "\"answer_a\": \"Nervio óptico\","
+    # "\"answer_b\": \"Nervio mandibular\","
+    # "\"answer_c\": \"Arteria carótida interna\","
+    # "\"answer_d\": \"Nervio facial\","
+    # "\"explanation_a\": \"No pasa por el foramen oval.\","
+    # "\"explanation_b\": \"Es correcto, atraviesa el foramen oval.\","
+    # "\"explanation_c\": \"Pasa por el conducto carotídeo.\","
+    # "\"explanation_d\": \"Pasa por el foramen estilomastoideo.\","
+    # "\"correct_answer\": \"B\""
+    # "}"
 )

@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta, timezone
 import jwt
 
 from src.configs.configs import settings
@@ -26,24 +25,18 @@ class JWTUtils:
         return payload
 
     @staticmethod
-    def encode_jwt(payload: dict, expiration_minutes: int | None = None) -> str:
+    def encode_jwt(payload: dict) -> str:
         """
         Encode a payload into a JWT token.
 
         Args:
             payload: The data to encode in the token
-            expiration_minutes: Token expiration time in minutes (default: 30)
 
         Returns:
             str: The encoded JWT token
         """
-        payload_copy = payload.copy()
-
-        exp_minutes = expiration_minutes or settings.EXPIRATION_MINUTES
-        expiration = datetime.now(timezone.utc) + timedelta(minutes=exp_minutes)
-        payload_copy["exp"] = expiration
 
         token = jwt.encode(
-            payload_copy, settings.JWT_SECRET_KEY, algorithm=settings.ALGORITHM
+            payload, settings.JWT_SECRET_KEY, algorithm=settings.ALGORITHM
         )
         return token

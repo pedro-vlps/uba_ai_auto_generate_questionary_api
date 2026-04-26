@@ -1,4 +1,14 @@
-﻿## v0.2.1
+﻿## v1.0.0
+
+- JWT Validation
+- Permission validation
+- Account creation
+
+## v0.3.0
+
+- Created files to generate a new version for Database (Migrations)
+
+## v0.2.1
 
 - Added Railsway deploy files
 
@@ -14,6 +24,8 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
+
 
 
 
