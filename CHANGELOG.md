@@ -1,4 +1,10 @@
-﻿## v0.3.0
+﻿## v1.0.0
+
+- JWT Validation
+- Permission validation
+- Account creation
+
+## v0.3.0
 
 - Created files to generate a new version for Database (Migrations)
 
@@ -18,6 +24,7 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
 
 
 
