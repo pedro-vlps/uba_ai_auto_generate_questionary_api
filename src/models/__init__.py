@@ -7,7 +7,6 @@ from src.models.models import (
     Profiles,
     Users,
     Institutions,
-    Institutions,
     UsersInstitutions,
     QuestionAnswers,
     QuestionFeedbacks,

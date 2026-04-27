@@ -2,7 +2,14 @@
 from .ai_anatomy_schemas import AnatomySchema, ParameterEnum
 from .profile_schemas import ProfileBase, ProfileGet, ProfilePost, ProfileUpdate
 from .questions_schemas import QuestionsBase, QuestionsGet, QuestionsPost, QuestionsUpdate
-from .users_schemas import UsersBase, UsersGet, UsersPost, UsersUpdate, UsersNoPasswordResponse
+from .users_schemas import (
+    UsersBase,
+    UsersGet,
+    UsersLoginResponse,
+    UsersNoPasswordResponse,
+    UsersPost,
+    UsersUpdate,
+)
 
 __all__ = [
     "AnatomySchema",
@@ -17,6 +24,7 @@ __all__ = [
     "QuestionsUpdate",
     "UsersBase",
     "UsersGet",
+    "UsersLoginResponse",
     "UsersPost",
     "UsersUpdate",
     "UsersNoPasswordResponse",

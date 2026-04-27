@@ -153,3 +153,40 @@ class UsersNoPasswordResponse(BaseModel):
 
         except Exception: # pylint: disable=broad-exception-caught
             return value
+
+
+class UsersLoginResponse(BaseModel):
+    """Schema dedicated to login responses with decrypted public user fields."""
+    id: UUID
+    name: str
+    nickname: str
+
+    class Config:
+        from_attributes = True
+        json_schema_extra = {
+            "example": {
+                "id": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "John Doe",
+                "nickname": "johndoe",
+            }
+        }
+
+    @field_validator("name", "nickname", mode="after")
+    @classmethod
+    def decrypt_fields(cls, value: str) -> str:
+        """
+        Decrypt login response fields loaded from the database.
+
+        Args:
+            value: The encrypted field value to decrypt
+
+        Returns:
+            str: Decrypted value or original value if decryption fails
+        """
+        if not value:
+            return value
+        try:
+            return FernetUtils().decrypt(value)
+
+        except Exception: # pylint: disable=broad-exception-caught
+            return value

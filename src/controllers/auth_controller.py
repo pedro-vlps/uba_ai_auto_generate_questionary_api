@@ -1,4 +1,5 @@
 """Authentication controller handling login requests and token generation."""
+
 from src.services.auth_service import AuthService
 from src.utils.jwt_utils import JWTUtils
 
@@ -21,9 +22,9 @@ class AuthController:
         """
         try:
             user = await AuthService.login(nickname, password, db)
-            token_response = JWTUtils.encode_jwt({"id": str(user.id)})
+            token_response = JWTUtils.encode_jwt({"id": str(user.user.id)})
 
-            return {"token": token_response}
+            return {"token": token_response, "user": user}
 
         except ValueError as e:
             return {"error": str(e)}
