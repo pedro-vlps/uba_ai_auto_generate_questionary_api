@@ -30,7 +30,7 @@ class AIAnatomyController:
             parameter, used_subject, last_questions
         )
 
-        json_response = json.loads(response["output"][0]["content"][0]["text"]) #response.output[0].content[0].text)
+        json_response = json.loads(response.output[0].content[0].text)
         json_response["topic"] = parameter
         json_response["subject"] = used_subject
         json_response["institution_id"] = institution_id

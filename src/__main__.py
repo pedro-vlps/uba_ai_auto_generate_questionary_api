@@ -1,10 +1,16 @@
 """Main API File"""
+
 from fastapi import FastAPI, Depends
 from fastapi.security import HTTPBearer, APIKeyHeader
 from fastapi.middleware.cors import CORSMiddleware
 from api_crud_generate_libary.routers.router import Router
 
-from src.routers import ai_anatomy_router, auth_router, users_router
+from src.routers import (
+    ai_anatomy_router,
+    auth_router,
+    users_router,
+    question_answers_router,
+)
 from src.models import routes_declaration
 from src.middleware.jwt_middleware import jwt_checker
 
@@ -23,10 +29,12 @@ app.add_middleware(
 
 app.middleware("http")(jwt_checker)
 
+
 @app.get("/healthy")
 def healthy():
     """Healthy check route"""
-    return { "status": "Ok" }
+    return {"status": "Ok"}
+
 
 app.include_router(
     auth_router,
@@ -38,6 +46,13 @@ app.include_router(
     users_router,
     prefix="/users",
     tags=["Users"],
+)
+
+app.include_router(
+    question_answers_router,
+    prefix="/question-answers",
+    tags=["Question Answers"],
+    dependencies=[Depends(security), Depends(institution_id)],
 )
 
 for route in routes_declaration:
@@ -70,5 +85,5 @@ app.include_router(
     ai_anatomy_router,
     prefix="/anatomy",
     tags=["Anatomy"],
-    dependencies=[Depends(security), Depends(institution_id) ]
+    dependencies=[Depends(security), Depends(institution_id)],
 )

@@ -1,7 +1,4 @@
 """Schema module exports for data validation models."""
-from .ai_anatomy_schemas import AnatomySchema, ParameterEnum
-from .profile_schemas import ProfileBase, ProfileGet, ProfilePost, ProfileUpdate
-from .questions_schemas import QuestionsBase, QuestionsGet, QuestionsPost, QuestionsUpdate
 from .users_schemas import (
     UsersBase,
     UsersGet,
@@ -9,6 +6,16 @@ from .users_schemas import (
     UsersNoPasswordResponse,
     UsersPost,
     UsersUpdate,
+)
+from .ai_anatomy_schemas import AnatomySchema, ParameterEnum
+from .profile_schemas import ProfileBase, ProfileGet, ProfilePost, ProfileUpdate
+from .questions_schemas import QuestionsBase, QuestionsGet, QuestionsPost, QuestionsUpdate 
+from .questions_answers_schema import (
+    QuestionAnswersBase,
+    QuestionAnswersGet,
+    QuestionAnswersPost,
+    QuestionAnswersUpdate,
+    UserQuestionWithLatestAnswerSchema,
 )
 
 __all__ = [
@@ -28,4 +35,10 @@ __all__ = [
     "UsersPost",
     "UsersUpdate",
     "UsersNoPasswordResponse",
+    "QuestionAnswersBase",
+    "QuestionAnswersPost",
+    "QuestionAnswersUpdate",
+    "QuestionAnswersGet",
+    "UserQuestionWithLatestAnswerSchema",
+
 ]

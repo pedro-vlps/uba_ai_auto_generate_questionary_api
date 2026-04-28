@@ -1,5 +1,5 @@
 """Service for AI-generated anatomy questions using OpenAI."""
-import json
+
 from openai import OpenAI
 
 from src.helpers.questions_text import ANATOMY_QUESTION
@@ -44,37 +44,9 @@ class AIAnatomyService:
                 "There are no recent questions to avoid repetition.",
             )
 
-        # print(formatted_question)
-
         # Use the AI model to generate a response based on the prompt
-        # response = client.responses.create(
-        #     model="gpt-4.1-mini", input=formatted_question
-        # )
-
-        json_response = json.dumps(
-            {
-              "question": "Un paciente presenta ictericia y dolor en el cuadrante superior derecho tras una cirugía de urgencia abdominal. Se sospecha una lesión en la vía biliar. ¿Cuál de las siguientes estructuras es más probable que haya resultado lesionada y afecta el drenaje biliar hacia el duodeno?",
-              "answer_a": "Conducto hepático común",
-              "answer_b": "Conducto pancreático principal",
-              "answer_c": "Conducto colédoco",
-              "answer_d": "Conducto cístico",
-              "explanation_a": "El conducto hepático común recoge la bilis del hígado pero se une al cístico para formar el colédoco.",
-              "explanation_b": "El conducto pancreático transporta enzimas pancreáticas, no bilis, por lo que no causa ictericia directa.",
-              "explanation_c": "El conducto colédoco lleva la bilis hacia el duodeno; su lesión produce estasis biliar y ictericia.",
-              "explanation_d": "El conducto cístico conecta la vesícula con el colédoco; su lesión puede afectar la vesícula pero menos la ictericia.",
-              "correct_answer": "C",
-              "topic": "Esplacno",
-              "subject": "conceptual_reasoning"
-            }
+        response = client.responses.create(
+            model="gpt-4.1-mini", input=formatted_question
         )
-        return {
-            "output":[
-                {
-                    "content":[
-                        {
-                            "text": json_response
-                        }
-                    ]
-                }
-            ]
-        }
+
+        return response
