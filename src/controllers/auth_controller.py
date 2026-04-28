@@ -1,4 +1,5 @@
 """Authentication controller handling login requests and token generation."""
+from fastapi import HTTPException
 
 from src.services.auth_service import AuthService
 from src.utils.jwt_utils import JWTUtils
@@ -18,13 +19,22 @@ class AuthController:
             db: Database session for querying user data
 
         Returns:
-            dict: Contains JWT token on success or error message on failure
+            tuple[dict, str]: Authenticated user data plus the generated JWT token
         """
         try:
             user = await AuthService.login(nickname, password, db)
-            token_response = JWTUtils.encode_jwt({"id": str(user.user.id)})
 
-            return {"token": token_response, "user": user}
+            if hasattr(user, "user") and user.user.id:
+                token_response = JWTUtils.encode_jwt(
+                    {"id": str(user.user.id), "sub": str(user.user.id)}
+                )
+
+            else:
+                token_response = JWTUtils.encode_jwt(
+                    {"id": str(user.id), "sub": str(user.id)}
+                )
+
+            return {"user": user}, token_response
 
         except ValueError as e:
-            return {"error": str(e)}
+            raise HTTPException(status_code=401, detail=str(e)) from e
