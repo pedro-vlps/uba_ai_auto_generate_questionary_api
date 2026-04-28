@@ -7,7 +7,6 @@ from src.models.models import (
     Profiles,
     Users,
     Institutions,
-    Institutions,
     UsersInstitutions,
     QuestionAnswers,
     QuestionFeedbacks,
@@ -17,6 +16,11 @@ from src.schemas import (
     QuestionsGet,
     QuestionsPost,
     QuestionsUpdate,
+)
+from src.schemas import (
+    QuestionAnswersBase,
+    QuestionAnswersGet,
+    QuestionAnswersPost,
 )
 
 from src.configs.db_connection import get_db
@@ -45,4 +49,26 @@ routes_declaration: list[dict[str, Any]] = [
         "route_prefix": "/questions",
         "route_tags": ["Questions"],
     },
+    {
+        "model_class": QuestionAnswers,
+        "standard_schema": QuestionAnswersBase,
+        "db_session": get_db,
+        "auth_callback": None,
+        "request_post_schema": QuestionAnswersPost,
+        "request_update_schema": None,
+        "response_get_schema": None,
+        "response_get_by_id_schema": None,
+        "response_post_schema": QuestionAnswersGet,
+        "response_delete_schema": None,
+        "response_patch_schema": None,
+        "enable_get": False,
+        "enable_get_by_id": False,
+        "enable_post": True,
+        "enable_delete": False,
+        "enable_patch": False,
+        "join_parameters": None,
+        "second_level_join_parameters": None,
+        "route_prefix": "/question-answers",
+        "route_tags": ["Question Answers"],
+    }
 ]

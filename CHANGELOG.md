@@ -1,4 +1,14 @@
-﻿## v1.0.0
+﻿## v1.2.0
+
+- Added question answers route
+- Added questions GET joinig answers filtering per user
+
+## v1.1.0
+
+- Added UBA institution and students profile
+- Added account creation route
+
+## v1.0.0
 
 - JWT Validation
 - Permission validation
@@ -24,6 +34,8 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
+
 
 
 
