@@ -15,7 +15,7 @@ class QuestionAnswersService:
     async def get_questions_with_latest_user_answers(
         user_id: UUID,
         db,
-    ) -> list[UserQuestionWithLatestAnswerSchema]:
+    ):
         """
         Return all questions with the latest answer sent by the given user, if any.
 
@@ -91,30 +91,34 @@ class QuestionAnswersService:
 
         result = await db.execute(query)
 
-        return [
-            UserQuestionWithLatestAnswerSchema(
-                id=question.id,
-                institution_id=question.institution_id,
-                topic=question.topic,
-                subject=question.subject,
-                question=question.question,
-                answer_a=question.answer_a,
-                answer_b=question.answer_b,
-                answer_c=question.answer_c,
-                answer_d=question.answer_d,
-                answer_e=question.answer_e,
-                explanation_a=question.explanation_a,
-                explanation_b=question.explanation_b,
-                explanation_c=question.explanation_c,
-                explanation_d=question.explanation_d,
-                explanation_e=question.explanation_e,
-                correct_answer=question.correct_answer,
-                created_at=question.created_at,
-                updated_at=question.updated_at,
-                user_answer=user_answer,
-                user_id=answered_user_id,
-                answered_at=answered_at,
-                answer_updated_at=answer_updated_at,
-            )
-            for question, user_answer, answered_user_id, answered_at, answer_updated_at in result.all()
-        ]
+        return {
+            "data": [
+                UserQuestionWithLatestAnswerSchema(
+                    id=question.id,
+                    institution_id=question.institution_id,
+                    topic=question.topic,
+                    subject=question.subject,
+                    question=question.question,
+                    answer_a=question.answer_a,
+                    answer_b=question.answer_b,
+                    answer_c=question.answer_c,
+                    answer_d=question.answer_d,
+                    answer_e=question.answer_e,
+                    explanation_a=question.explanation_a,
+                    explanation_b=question.explanation_b,
+                    explanation_c=question.explanation_c,
+                    explanation_d=question.explanation_d,
+                    explanation_e=question.explanation_e,
+                    correct_answer=question.correct_answer,
+                    created_at=question.created_at,
+                    updated_at=question.updated_at,
+                    user_answer=user_answer,
+                    user_id=answered_user_id,
+                    answered_at=answered_at,
+                    answer_updated_at=answer_updated_at,
+                )
+                for (
+                    question, user_answer, answered_user_id, answered_at, answer_updated_at
+                ) in result.all()
+            ]
+        }

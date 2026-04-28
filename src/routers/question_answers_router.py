@@ -1,13 +1,18 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
+from api_crud_generate_libary.schemas.pattern_schema import PatternSchemaDataList
 
 from src.configs.db_connection import get_db
 from src.controllers.question_answers_controller import QuestionAnswersController
+from src.schemas.questions_answers_schema import UserQuestionWithLatestAnswerSchema
 
 question_answers_router = APIRouter()
 
 
-@question_answers_router.get("/latest-answers")
+@question_answers_router.get(
+    "/latest-answers",
+    response_model=PatternSchemaDataList[UserQuestionWithLatestAnswerSchema],
+)
 async def get_questions_with_latest_user_answers(
     user_id: str,
     db: AsyncSession = Depends(get_db),

@@ -14,8 +14,6 @@ from src.models.models import (
 from src.schemas import (
     QuestionsBase,
     QuestionsGet,
-    QuestionsPost,
-    QuestionsUpdate,
 )
 from src.schemas import (
     QuestionAnswersBase,
@@ -32,8 +30,8 @@ routes_declaration: list[dict[str, Any]] = [
         "standard_schema": QuestionsBase,
         "db_session": get_db,
         "auth_callback": None,
-        "request_post_schema": QuestionsPost,
-        "request_update_schema": QuestionsUpdate,
+        "request_post_schema": None,
+        "request_update_schema": None,
         "response_get_schema": QuestionsGet,
         "response_get_by_id_schema": QuestionsGet,
         "response_post_schema": QuestionsGet,

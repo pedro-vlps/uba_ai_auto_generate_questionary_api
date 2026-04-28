@@ -9,7 +9,7 @@ from .users_schemas import (
 )
 from .ai_anatomy_schemas import AnatomySchema, ParameterEnum
 from .profile_schemas import ProfileBase, ProfileGet, ProfilePost, ProfileUpdate
-from .questions_schemas import QuestionsBase, QuestionsGet, QuestionsPost, QuestionsUpdate 
+from .questions_schemas import QuestionsBase, QuestionsGet
 from .questions_answers_schema import (
     QuestionAnswersBase,
     QuestionAnswersGet,
@@ -27,8 +27,6 @@ __all__ = [
     "ProfileUpdate",
     "QuestionsBase",
     "QuestionsGet",
-    "QuestionsPost",
-    "QuestionsUpdate",
     "UsersBase",
     "UsersGet",
     "UsersLoginResponse",

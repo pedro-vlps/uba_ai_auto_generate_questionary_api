@@ -36,36 +36,12 @@ class QuestionsBase(BaseModel):
         }
 
 
-class QuestionsUpdate(BaseModel):
-    """Schema for partial question updates."""
-    pergunta: Optional[str] = None
-    resposta_a: Optional[str] = None
-    resposta_b: Optional[str] = None
-    resposta_c: Optional[str] = None
-    resposta_d: Optional[str] = None
-    resposta_certa: Optional[str] = None
-    explicacao_a: Optional[str] = None
-    explicacao_b: Optional[str] = None
-    explicacao_c: Optional[str] = None
-    explicacao_d: Optional[str] = None
-
-    class Config:
-        from_attributes = True
-        json_schema_extra = {
-            "example": {
-                "pergunta": "Qual é a capital do Brasil?",
-                "resposta_certa": "C"
-            }
-        }
-
-
-class QuestionsPost(QuestionsBase):
-    """Schema for creating a new question."""
-
 class QuestionsGet(QuestionsBase):
     """Schema for retrieving question data with ID."""
     id: UUID
     institution_id: UUID
+    topic: str
+    subject: str
 
     class Config:
         from_attributes = True

@@ -43,7 +43,7 @@ class UsersController:
         uba_institution = await InstitutionsService.get_uba_institution(db)
         uba_profile = await ProfilesService.get_uba_profile(db)
 
-        return await generic_user_institution_service.create(
+        user_response = await generic_user_institution_service.create(
             {
                 "user_id": new_user.id,
                 "institution_id": uba_institution.id,
@@ -53,3 +53,5 @@ class UsersController:
             join_parameters=None,
             second_level_join_parameters=None,
         )
+
+        return {"data": user_response}
