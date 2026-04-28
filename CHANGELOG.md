@@ -1,4 +1,8 @@
-﻿## v1.3.0
+﻿## v1.3.1
+
+- Added response models to POST /users, GET /question-answers/latest-answers and POST /anatomy/ai
+
+## v1.3.0
 
 - Changed JWT send format (Coockies instead Request Headers)
 - Adjusted login route
@@ -39,6 +43,7 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
 
 
 
