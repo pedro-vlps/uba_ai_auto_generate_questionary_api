@@ -1,4 +1,9 @@
-﻿## v1.2.0
+﻿## v1.3.0
+
+- Changed JWT send format (Coockies instead Request Headers)
+- Adjusted login route
+
+## v1.2.0
 
 - Added question answers route
 - Added questions GET joinig answers filtering per user
@@ -34,6 +39,7 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
 
 
 

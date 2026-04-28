@@ -1,10 +1,27 @@
+import jwt
+
 from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
 
+from src.utils.auth_cookie_utils import AuthCookieUtils
 from src.utils.jwt_utils import JWTUtils
-from src.utils.constraints import BYPASS_ROUTES
+from src.utils.constraints import should_bypass_auth
 from src.configs.db_connection import async_session
 from src.middleware.check_permissions import check_permissions
+
+
+def _finalize_auth_response(
+    request: Request, response, should_clear_cookie: bool = False
+):
+    """Persist or clear the auth cookie on the outgoing response."""
+    token = getattr(request.state, "auth_token", None)
+    if token:
+        AuthCookieUtils.set_auth_cookie(response, token)
+
+    if should_clear_cookie:
+        AuthCookieUtils.clear_auth_cookie(response)
+
+    return response
 
 
 async def jwt_checker(request: Request, call_next):
@@ -18,33 +35,38 @@ async def jwt_checker(request: Request, call_next):
     Returns:
         Response: Either an error response if token is invalid, or the next handler's response
     """
-    if request.method == "OPTIONS" or (
-        request.url.path == "/users" and request.method == "POST"
-    ):
-        return await call_next(request)
+    request.state.auth_token = None
+    bypass_auth = request.method == "OPTIONS" or should_bypass_auth(
+        request.method, request.url.path
+    )
 
-    request_token = request.headers.get("authorization")
+    if bypass_auth:
+        response = await call_next(request)
+        return _finalize_auth_response(request, response)
 
-    if not request_token and not request.url.path in BYPASS_ROUTES:
-        return JSONResponse(status_code=401, content={"detail": "Token is required"})
+    token = AuthCookieUtils.extract_token(request)
+    if not token:
+        response = JSONResponse(status_code=401, content={"detail": "Token is required"})
+        return _finalize_auth_response(request, response, should_clear_cookie=True)
 
-    token = None
-    if request_token:
-        _string, token = request_token.split(" ")
+    try:
+        decoded_token = JWTUtils.decode_jwt(token)
+        await check_permissions(
+            request.headers.get("x-institution-id"),
+            decoded_token["id"],
+            request.method,
+            request.url.path,
+            async_session(),
+        )
 
-    if not request.url.path in BYPASS_ROUTES and token:
-        try:
-            decoded_token = JWTUtils.decode_jwt(token)
-            await check_permissions(
-                request.headers.get("x-institution-id"),
-                decoded_token["id"],
-                request.method,
-                request.url.path,
-                async_session(),
-            )
-
-        except HTTPException as e:
-            return JSONResponse(status_code=e.status_code, content={"detail": e.detail})
+    except jwt.ExpiredSignatureError:
+        response = JSONResponse(status_code=401, content={"detail": "Token expired"})
+        return _finalize_auth_response(request, response, should_clear_cookie=True)
+    except (jwt.InvalidTokenError, HTTPException) as e:
+        status_code = getattr(e, "status_code", 401)
+        detail = getattr(e, "detail", "Invalid token")
+        response = JSONResponse(status_code=status_code, content={"detail": detail})
+        return _finalize_auth_response(request, response, should_clear_cookie=True)
 
     response = await call_next(request)
-    return response
+    return _finalize_auth_response(request, response)

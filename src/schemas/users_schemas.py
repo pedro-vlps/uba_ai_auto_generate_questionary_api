@@ -30,7 +30,6 @@ class UsersUpdate(BaseModel):
     """Schema for partial user updates with field encryption."""
     nickname: Optional[str] = None
     password: Optional[str] = None
-    profile_id: Optional[UUID] = None
 
     class Config:
         from_attributes = True
@@ -123,6 +122,7 @@ class UsersNoPasswordResponse(BaseModel):
     id: UUID
     name: str
     nickname: str
+    global_role: str
 
     class Config:
         from_attributes = True

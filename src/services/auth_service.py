@@ -1,4 +1,5 @@
 """Authentication service for user validation."""
+
 from sqlalchemy import select
 
 from src.models import Users
@@ -38,8 +39,15 @@ class AuthService:
                 fernet_utils.decrypt(user.nickname) == nickname
                 and fernet_utils.decrypt(user.password) == password
             ):
+                if user.global_role == "Admin":
+                    return user
+
                 uba_institution = await InstitutionsService.get_uba_institution(db)
-                user_institutions = await UserInstitutionsService.read_user_institutions(user.id, uba_institution.id, db)
+                user_institutions = (
+                    await UserInstitutionsService.read_user_institutions(
+                        user.id, uba_institution.id, db
+                    )
+                )
 
                 return user_institutions
 

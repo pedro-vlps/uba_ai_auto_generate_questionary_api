@@ -1,4 +1,5 @@
 import jwt
+from datetime import datetime, timedelta, timezone
 
 from src.configs.configs import settings
 
@@ -35,8 +36,13 @@ class JWTUtils:
         Returns:
             str: The encoded JWT token
         """
-
+        now = datetime.now(timezone.utc)
+        token_payload = {
+            **payload,
+            "iat": now,
+            "exp": now + timedelta(minutes=settings.JWT_EXPIRATION_MINUTES),
+        }
         token = jwt.encode(
-            payload, settings.JWT_SECRET_KEY, algorithm=settings.ALGORITHM
+            token_payload, settings.JWT_SECRET_KEY, algorithm=settings.ALGORITHM
         )
         return token
