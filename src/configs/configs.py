@@ -35,6 +35,15 @@ class Settings(BaseSettings):
             return [item.strip() for item in value.split(",") if item.strip()]
         return value
 
+    @field_validator("AUTH_COOKIE_SAMESITE", mode="before")
+    @classmethod
+    def normalize_cookie_samesite(cls, value: str) -> str:
+        """Normalize and validate SameSite values accepted by browsers."""
+        normalized = value.lower()
+        if normalized not in {"lax", "strict", "none"}:
+            raise ValueError("AUTH_COOKIE_SAMESITE must be lax, strict, or none")
+        return normalized
+
     @property
     def database_url(self):
         """Build the database URL from individual components."""

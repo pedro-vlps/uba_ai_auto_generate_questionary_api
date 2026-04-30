@@ -10,7 +10,7 @@ from src.configs.db_connection import get_db
 
 ai_anatomy_router = APIRouter()
 
-@ai_anatomy_router.post("/ai", response_model=PatternSchema[QuestionsGet])
+@ai_anatomy_router.post("/anatomy", response_model=PatternSchema[QuestionsGet])
 async def generate_question(
     request: Request,
     data: AnatomySchema,

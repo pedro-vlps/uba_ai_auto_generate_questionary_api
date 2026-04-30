@@ -23,8 +23,6 @@ async def check_permissions(institution_id, user_id, method, url_path, db):
         bool: True if the user has permission to access the route, False otherwise
     """
 
-    print(institution_id, user_id, method, url_path)
-
     user = await users_service.read_one(
         user_id,
         db,

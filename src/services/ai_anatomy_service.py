@@ -46,7 +46,7 @@ class AIAnatomyService:
 
         # Use the AI model to generate a response based on the prompt
         response = client.responses.create(
-            model="gpt-4.1-mini", input=formatted_question
+            model="gpt-5.4-mini", input=formatted_question
         )
 
         return response

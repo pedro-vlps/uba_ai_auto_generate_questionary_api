@@ -1,4 +1,11 @@
-﻿## v1.3.1
+﻿## v1.4.0
+
+- Fixed token Cookies authentication
+- Increased the quality of question generation prompt
+- Added a Logout route
+- Added GET and GET by ID route for institutions
+
+## v1.3.1
 
 - Added response models to POST /users, GET /question-answers/latest-answers and POST /anatomy/ai
 
@@ -43,6 +50,7 @@
 - Added Fernet encryptation and JWT token generation
 - Created DB scripts
 - Added JWT Middleware
+
 
 
 

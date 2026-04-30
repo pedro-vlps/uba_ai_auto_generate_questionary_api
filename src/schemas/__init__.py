@@ -17,6 +17,7 @@ from .questions_answers_schema import (
     QuestionAnswersUpdate,
     UserQuestionWithLatestAnswerSchema,
 )
+from src.schemas.institutions_schema import InstitutionBase
 
 __all__ = [
     "AnatomySchema",
@@ -38,5 +39,5 @@ __all__ = [
     "QuestionAnswersUpdate",
     "QuestionAnswersGet",
     "UserQuestionWithLatestAnswerSchema",
-
+    "InstitutionBase",
 ]
