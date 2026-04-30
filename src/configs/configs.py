@@ -1,4 +1,5 @@
 """Application settings and configuration management using environment variables."""
+
 import json
 from typing import Any
 
@@ -8,6 +9,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
+
     POSTGRES_DB: str
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
@@ -23,7 +25,11 @@ class Settings(BaseSettings):
     AUTH_COOKIE_SAMESITE: str = "lax"
     AUTH_COOKIE_DOMAIN: str | None = None
     AUTH_COOKIE_PATH: str = "/"
-    FRONTEND_ORIGINS: list[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    FRONTEND_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://ai-questionary-front-iyek.vercel.app",
+    ]
 
     @field_validator("FRONTEND_ORIGINS", mode="before")
     @classmethod
@@ -60,6 +66,8 @@ class Settings(BaseSettings):
 
     class Config:
         """Configuration for loading environment variables from a .env file."""
+
         env_file = ".env"
 
-settings = Settings() # type: ignore[call-arg]
+
+settings = Settings()  # type: ignore[call-arg]
