@@ -21,8 +21,8 @@ class Settings(BaseSettings):
     ALGORITHM: str
     JWT_EXPIRATION_MINUTES: int = 30
     AUTH_COOKIE_NAME: str = "access_token"
-    AUTH_COOKIE_SECURE: bool = False
-    AUTH_COOKIE_SAMESITE: str = "none"
+    AUTH_COOKIE_SECURE: bool = True # Validar formatação dessa maneira / False
+    AUTH_COOKIE_SAMESITE: str = "none" # Validar formatação dessa maneira / "lax"
     AUTH_COOKIE_DOMAIN: str | None = None
     AUTH_COOKIE_PATH: str = "/"
     FRONTEND_ORIGINS: list[str] = [
