@@ -8,6 +8,6 @@
 PERMISSIONS = {
     "basic_uba_user": {
         "questions": ["GET"],
-        "ai_questions": ["POST"],
+        "ai": ["POST"],
     }
 }

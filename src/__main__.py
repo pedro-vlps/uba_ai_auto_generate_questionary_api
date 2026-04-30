@@ -19,6 +19,8 @@ institution_id = APIKeyHeader(name="x-institution-id", auto_error=False)
 
 app = FastAPI()
 
+app.middleware("http")(jwt_checker)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.FRONTEND_ORIGINS,
@@ -26,8 +28,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app.middleware("http")(jwt_checker)
 
 
 @app.get("/healthy")
@@ -72,7 +72,7 @@ for route in routes_declaration:
         use_post=route["enable_post"],
         use_delete=route["enable_delete"],
         use_patch=route["enable_patch"],
-        auth_callback=[institution_id],
+        auth_callback=[institution_id] if route["dependencies"] else None,
         join_parameters=route["join_parameters"],
         second_level_join_parameters=route["second_level_join_parameters"],
     )
@@ -83,7 +83,7 @@ for route in routes_declaration:
 
 app.include_router(
     ai_anatomy_router,
-    prefix="/anatomy",
+    prefix="/ai",
     tags=["Anatomy"],
     dependencies=[Depends(institution_id)],
 )

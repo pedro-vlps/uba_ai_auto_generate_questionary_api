@@ -1,7 +1,7 @@
 from uuid import UUID
 from pydantic import BaseModel
 
-class InstitutionGet(BaseModel):
+class InstitutionBase(BaseModel):
     id: UUID
     name: str
 

@@ -1,6 +1,6 @@
 """Route constraints for JWT middleware authentication bypass."""
 
-BYPASS_ROUTES = {"/openapi.json", "/docs", "/login", "/healthy"}
+BYPASS_ROUTES = {"/openapi.json", "/docs", "/login", "/logout", "/healthy", "/institutions"}
 BYPASS_ROUTE_METHODS = {("POST", "/users")}
 
 

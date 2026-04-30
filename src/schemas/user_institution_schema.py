@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 from src.schemas.profile_schemas import ProfileGet
-from src.schemas.institutions_schema import InstitutionGet
+from src.schemas.institutions_schema import InstitutionBase
 from src.schemas.users_schemas import UsersLoginResponse
 
 
@@ -26,7 +26,7 @@ class UserInstitutionSchemaJoin(BaseModel):
     """Schema for user institution association."""
 
     user: UsersLoginResponse
-    institution: InstitutionGet
+    institution: InstitutionBase
     profile: ProfileGet
 
     class Config:
