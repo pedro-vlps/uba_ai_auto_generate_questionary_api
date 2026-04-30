@@ -63,14 +63,27 @@ CREATE TABLE IF NOT EXISTS users_institutions (
     PRIMARY KEY (user_id, institution_id)
 );
 
-ALTER TABLE questions
-ADD COLUMN institution_id UUID REFERENCES institutions(id) NOT NULL DEFAULT current_setting('app.current_institution_id', true)::uuid,
-ADD COLUMN topic VARCHAR(100) NOT NULL DEFAULT 'Sem tópico',
-ADD COLUMN subject VARCHAR(100) NOT NULL DEFAULT 'Sem assunto',
-ADD COLUMN answer_e TEXT,
-ADD COLUMN explanation_e TEXT,
-ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-ADD COLUMN updated_at TIMESTAMP;
+DO $$
+DECLARE
+    uba_institution_id UUID;
+BEGIN
+    INSERT INTO institutions (name)
+    VALUES ('UBA')
+    RETURNING id INTO uba_institution_id;
+
+    ALTER TABLE questions
+    ADD COLUMN institution_id UUID REFERENCES institutions(id),
+    ADD COLUMN topic VARCHAR(100) NOT NULL DEFAULT 'Sem tópico',
+    ADD COLUMN subject VARCHAR(100) NOT NULL DEFAULT 'Sem assunto',
+    ADD COLUMN answer_e TEXT,
+    ADD COLUMN explanation_e TEXT,
+    ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    ADD COLUMN updated_at TIMESTAMP;
+
+    UPDATE questions SET institution_id = uba_institution_id WHERE institution_id IS NULL;
+
+    ALTER TABLE questions ALTER COLUMN institution_id SET NOT NULL;
+END $$;
 
 CREATE TABLE IF NOT EXISTS question_answers (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
