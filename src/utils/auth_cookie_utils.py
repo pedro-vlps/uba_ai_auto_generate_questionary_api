@@ -21,11 +21,19 @@ class AuthCookieUtils:
     @staticmethod
     def set_auth_cookie(response: Response, token: str) -> None:
         """Attach the authentication cookie to the outgoing response."""
+        from datetime import datetime, timezone, timedelta
+        
+        # Safari/iOS requer expires como datetime absoluto, não segundos relativos
+        # Isso é compatível com todos os navegadores modernos
+        expires_datetime = datetime.now(timezone.utc) + timedelta(seconds=settings.jwt_expiration_seconds)
+        
+        # Safari/iOS requer Secure=True com SameSite=None para cookies cross-origin
+        # Mas também precisa de expires como datetime, não como integer
         response.set_cookie(
             key=settings.AUTH_COOKIE_NAME,
             value=token,
             max_age=settings.jwt_expiration_seconds,
-            expires=settings.jwt_expiration_seconds,
+            expires=expires_datetime,
             httponly=True,
             secure=settings.AUTH_COOKIE_SECURE,
             samesite=settings.AUTH_COOKIE_SAMESITE,
