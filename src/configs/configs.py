@@ -22,13 +22,14 @@ class Settings(BaseSettings):
     JWT_EXPIRATION_MINUTES: int = 30
     AUTH_COOKIE_NAME: str = "access_token"
     AUTH_COOKIE_SECURE: bool = True # Validar formatação dessa maneira / False
-    AUTH_COOKIE_SAMESITE: str = "none" # Validar formatação dessa maneira / "lax"
+    AUTH_COOKIE_SAMESITE: str = "lax" # Validar formatação dessa maneira / "lax" - "none"
     AUTH_COOKIE_DOMAIN: str | None = None
     AUTH_COOKIE_PATH: str = "/"
     FRONTEND_ORIGINS: list[str] = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "https://ai-questionary-front-iyek.vercel.app",
+        "https://aiquestionaryfront-production.up.railway.app/",
     ]
 
     @field_validator("FRONTEND_ORIGINS", mode="before")
