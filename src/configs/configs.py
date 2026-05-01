@@ -30,6 +30,7 @@ class Settings(BaseSettings):
         "http://127.0.0.1:3000",
         "https://ai-questionary-front-iyek.vercel.app",
         "https://aiquestionaryfront-production.up.railway.app",
+        "https://dev.axiosacademy.com.br",
     ]
 
     @field_validator("FRONTEND_ORIGINS", mode="before")
