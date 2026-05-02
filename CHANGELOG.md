@@ -1,3 +1,8 @@
+## v1.6.6
+
+- Added subtopics description to the questions and to the prompt
+- Increased the quality of promtp improving rules
+
 ## v1.6.5
 
 - Removed last update of the question prompt, it breaked the question generation
