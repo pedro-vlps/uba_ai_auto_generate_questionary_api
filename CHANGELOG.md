@@ -1,3 +1,9 @@
+## v1.6.3
+
+- Increase the quality of answers
+- Added a rule to send just one correct answers with hard thinking answer process
+- Improvments on random choice selection
+
 ## v1.6.2
 
 - Added random letter correct answer to remove 'only A correct answer cicle'
