@@ -1,4 +1,8 @@
-﻿## v1.4.0
+## v1.5.0
+
+- Changed Cookies token validation to Header token validation (Authorization)
+
+## v1.4.0
 
 - Fixed token Cookies authentication
 - Increased the quality of question generation prompt
