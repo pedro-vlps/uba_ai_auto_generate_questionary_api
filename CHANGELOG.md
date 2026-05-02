@@ -1,3 +1,7 @@
+## v1.6.1
+
+- Removed 'musculos_abdomen' from Locomotor to Splacno
+
 ## v1.6.0
 
 - Added subtopic parameter to the AI Prompt
