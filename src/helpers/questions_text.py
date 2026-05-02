@@ -277,36 +277,6 @@ ANATOMY_QUESTION = (
     "Avoid similarity with:"
     "{RECENT_QUESTIONS}"
 
-    "PRIORITY RULES (STRICT ORDER - MUST FOLLOW):"
-    "1. The question MUST strictly match the SUB TOPIC"
-    "2. The question MUST belong to the given TOPIC"
-    "3. The diversity mode is secondary and MUST adapt to the subtopic"
-    "4. If any conflict exists, PRIORITIZE SUB TOPIC over diversity mode"
-
-    "SUB TOPIC ENFORCEMENT (CRITICAL):"
-    "- The question MUST explicitly involve structures, concepts, or functions of {SUB_TOPIC}"
-    "- At least one key element of the question MUST directly relate to this subtopic"
-    "- If the generated question does NOT clearly reflect the subtopic, you MUST "
-    "regenerate internally"
-
-    "SYSTEM CONSISTENCY CHECK (MANDATORY):"
-    "- Ensure that all anatomical structures belong to the correct system"
-    "- If the TOPIC is Splanchnology, DO NOT use bones, joints, or skeletal structures"
-    "- If such mismatch occurs, you MUST discard and regenerate the question"
-
-    "DIVERSITY MODE (CONTROLLED USE):"
-    "- Apply {DIVERSITY_MODE} ONLY within the context of the SUB TOPIC"
-    "- The diversity mode must NOT override anatomical correctness"
-    "- Example: if SUB TOPIC is lymphatics, location questions must refer to lymphatic structures"
-
-    "TOPIC VALIDATION (MANDATORY):"
-    "- The question content MUST clearly belong to {TOPIC}"
-    "- The question MUST directly reflect {SUB_TOPIC}"
-    "- If an expert could classify the question under another topic, it is INVALID"
-
-    "SCOPE VALIDATION:"
-    "- The anatomical structure asked MUST be part of the SUB TOPIC domain"
-
     "ANSWER CONTROL (CRITICAL - FOLLOW STEP BY STEP):"
     "STEP 1: Internally determine the correct answer content"
     "STEP 2: Validate that this answer is uniquely correct"
