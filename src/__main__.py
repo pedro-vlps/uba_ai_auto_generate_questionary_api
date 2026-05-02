@@ -1,7 +1,7 @@
 """Main API File"""
 
 from fastapi import FastAPI, Depends
-from fastapi.security import APIKeyHeader
+from fastapi.security import APIKeyHeader, HTTPBearer
 from fastapi.middleware.cors import CORSMiddleware
 from api_crud_generate_libary.routers.router import Router
 
@@ -15,6 +15,7 @@ from src.configs.configs import settings
 from src.models import routes_declaration
 from src.middleware.jwt_middleware import jwt_checker
 
+security = HTTPBearer(auto_error=False)
 institution_id = APIKeyHeader(name="x-institution-id", auto_error=False)
 
 app = FastAPI()
@@ -52,7 +53,7 @@ app.include_router(
     question_answers_router,
     prefix="/question-answers",
     tags=["Question Answers"],
-    dependencies=[Depends(institution_id)],
+    dependencies=[Depends(institution_id), Depends(security)],
 )
 
 for route in routes_declaration:
@@ -72,7 +73,7 @@ for route in routes_declaration:
         use_post=route["enable_post"],
         use_delete=route["enable_delete"],
         use_patch=route["enable_patch"],
-        auth_callback=[institution_id] if route["dependencies"] else None,
+        auth_callback=[institution_id, security] if route["dependencies"] else None,
         join_parameters=route["join_parameters"],
         second_level_join_parameters=route["second_level_join_parameters"],
     )
@@ -85,5 +86,5 @@ app.include_router(
     ai_anatomy_router,
     prefix="/ai",
     tags=["Anatomy"],
-    dependencies=[Depends(institution_id)],
+    dependencies=[Depends(institution_id), Depends(security)],
 )

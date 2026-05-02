@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 class ParameterEnum(str, Enum):
     """Enumeration of allowed anatomy topics for question generation."""
-    NEURO = "Neuro"
-    ESPLACNO = "Esplacno"
+    NEURO = "Neuroanatomy"
+    ESPLACNO = "Splanchnology"
     LOCOMOTOR = "Locomotor"
 
 
