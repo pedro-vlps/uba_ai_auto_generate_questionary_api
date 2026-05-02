@@ -1,3 +1,11 @@
+## v1.6.0
+
+- Added subtopic parameter to the AI Prompt
+- Added subtopic parameter to the questions table
+- Changed subject to diversity_mode to improve compatibility
+- Added a list of subtopics generated from bibliography references
+- Added a migration script to deploy database
+
 ## v1.5.1
 
 - Fixing uncompatible questions generation
