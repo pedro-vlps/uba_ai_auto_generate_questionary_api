@@ -1,3 +1,7 @@
+## v1.6.5
+
+- Removed last update of the question prompt, it breaked the question generation
+
 ## v1.6.4
 
 - Added rules to the topic, subtopic and diversity mode to improve the question generation and control the question content
