@@ -42,13 +42,16 @@ class AIAnatomyController:
             )
 
         used_diversity_mode = random.choice(UBA_DIVERSITY_MODES)
-        used_subtopic = check_anatomy_sub_topic(parameter)
+        used_subtopic, used_subtopic_description = check_anatomy_sub_topic(parameter)
         used_correct_letter = random.choice(["A", "B", "C", "D"])
-        last_questions = await QuestionsService.get_last_three_questions(db)
+        last_questions = await QuestionsService.get_last_three_questions(
+            parameter, used_subtopic, db
+        )
 
         response = await AIAnatomyService.generate_response(
             parameter,
             used_subtopic,
+            used_subtopic_description,
             used_diversity_mode,
             used_correct_letter,
             last_questions,
@@ -57,6 +60,7 @@ class AIAnatomyController:
         json_response = json.loads(response.output[0].content[0].text)
         json_response["topic"] = parameter
         json_response["subtopic"] = used_subtopic
+        json_response["subtopic_description"] = used_subtopic_description
         json_response["diversity_mode"] = used_diversity_mode
         json_response["institution_id"] = institution_id
 

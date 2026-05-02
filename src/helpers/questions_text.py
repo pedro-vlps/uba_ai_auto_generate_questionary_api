@@ -22,233 +22,201 @@ UBA_DIVERSITY_MODES = [
     "exception"
 ]
 
-LOCOMOTOR = [
-    # Osteología
-    "osteologia_general",
-    "osteologia_miembro_superior",
-    "osteologia_miembro_inferior",
-    "osteologia_columna_vertebral",
-    "osteologia_torax",
-    "osteologia_craneo",
+LOCOMOTOR_DESCRIPTIONS = {
+    "osteologia_general": "estructura, tipos de huesos, osificación, irrigación e inervación ósea",
+    "osteologia_miembro_superior": "huesos del miembro superior, accidentes óseos y relaciones",
+    "osteologia_miembro_inferior": "huesos del miembro inferior, relieves y funciones",
+    "osteologia_columna_vertebral": "vértebras, características regionales y articulación",
+    "osteologia_torax": "esternón, costillas y su organización estructural",
+    "osteologia_craneo": "huesos del cráneo, base y bóveda, forámenes",
 
-    # Artrología
-    "articulaciones_general",
-    "articulaciones_miembro_superior",
-    "articulaciones_miembro_inferior",
-    "articulaciones_columna",
-    "articulaciones_craneo",
+    "articulaciones_general": "tipos articulares, movimientos y estructuras asociadas",
+    "articulaciones_miembro_superior": "articulaciones del miembro superior y sus movimientos",
+    "articulaciones_miembro_inferior": "articulaciones del miembro inferior",
+    "articulaciones_columna": "articulaciones vertebrales y discos intervertebrales",
+    "articulaciones_craneo": "suturas y articulaciones craneales",
 
-    # Miología
-    "miologia_general",
-    "musculos_miembro_superior",
-    "musculos_miembro_inferior",
-    "musculos_espalda",
-    "musculos_torax",
-    "musculos_cabeza",
-    "musculos_cuello",
+    "miologia_general": "tipos musculares, inserciones, irrigación e inervación",
+    "musculos_miembro_superior": "músculos del miembro superior y sus funciones",
+    "musculos_miembro_inferior": "músculos del miembro inferior",
+    "musculos_espalda": "músculos superficiales y profundos del dorso",
+    "musculos_torax": "músculos intercostales y respiratorios",
+    "musculos_cabeza": "músculos faciales y masticadores",
+    "musculos_cuello": "músculos cervicales y sus funciones",
 
-    # Compartimentos / regiones
-    "compartimentos_brazo",
-    "compartimentos_antebrazo",
-    "compartimentos_mano",
-    "compartimentos_muslo",
-    "compartimentos_pierna",
-    "compartimentos_pie",
+    "compartimentos_brazo": "compartimentos anterior y posterior del brazo",
+    "compartimentos_antebrazo": "compartimentos flexor y extensor",
+    "compartimentos_mano": "compartimentos musculares de la mano",
+    "compartimentos_muslo": "compartimentos del muslo",
+    "compartimentos_pierna": "compartimentos de la pierna",
+    "compartimentos_pie": "compartimentos del pie",
 
-    # Vasos locomotor
-    "arterias_miembro_superior",
-    "arterias_miembro_inferior",
-    "venas_miembro_superior",
-    "venas_miembro_inferior",
+    "arterias_miembro_superior": "irrigación arterial del miembro superior",
+    "arterias_miembro_inferior": "irrigación arterial del miembro inferior",
+    "venas_miembro_superior": "drenaje venoso superficial y profundo superior",
+    "venas_miembro_inferior": "drenaje venoso del miembro inferior",
 
-    # Nervios periféricos
-    "plexo_braquial",
-    "plexo_lumbar",
-    "plexo_sacro",
-    "nervios_miembro_superior",
-    "nervios_miembro_inferior",
+    "plexo_braquial": "formación, ramos y territorios del plexo braquial",
+    "plexo_lumbar": "nervios del plexo lumbar",
+    "plexo_sacro": "formación y ramas del plexo sacro",
+    "nervios_miembro_superior": "inervación periférica del miembro superior",
+    "nervios_miembro_inferior": "inervación del miembro inferior",
 
-    # Anatomía regional
-    "axila",
-    "region_deltoidea",
-    "fosa_cubital",
-    "canal_carpiano",
-    "triangulo_femoral",
-    "conducto_aductor",
-    "fosa_poplitea"
+    "axila": "límites, contenido y relaciones de la axila",
+    "region_deltoidea": "estructura y contenido de la región deltoidea",
+    "fosa_cubital": "límites y contenido de la fosa cubital",
+    "canal_carpiano": "contenido y límites del túnel carpiano",
+    "triangulo_femoral": "límites y contenido del triángulo femoral",
+    "conducto_aductor": "trayecto y contenido del conducto aductor",
+    "fosa_poplitea": "límites y contenido de la fosa poplítea",
 
-    # Regiões topográficas
-    "regiones_topograficas_cabeza",
-    "regiones_topograficas_cuello",
-    "regiones_topograficas_tronco",
-    "regiones_topograficas_miembro_superior",
-    "regiones_topograficas_miembro_inferior",
+    "regiones_topograficas_cabeza": "división anatómica superficial de la cabeza",
+    "regiones_topograficas_cuello": "triángulos cervicales y contenido",
+    "regiones_topograficas_tronco": "regiones del tronco y referencias anatómicas",
+    "regiones_topograficas_miembro_superior": "regiones superficiales del miembro superior",
+    "regiones_topograficas_miembro_inferior": "regiones del miembro inferior",
 
-    # Sistema linfático locomotor
-    "linfaticos_miembro_superior",
-    "linfaticos_miembro_inferior",
-    "linfaticos_dorso",
-    "linfaticos_nuca"
-]
+    "linfaticos_miembro_superior": "drenaje linfático del miembro superior",
+    "linfaticos_miembro_inferior": "drenaje linfático del miembro inferior",
+    "linfaticos_dorso": "linfáticos del dorso",
+    "linfaticos_nuca": "drenaje linfático de la región nucal"
+}
 
-SPLACHNOLOGY = [
-    # Sistema digestivo
-    "cavidad_oral",
-    "lengua",
-    "glandulas_salivales",
-    "faringe",
-    "esofago",
-    "estomago",
-    "intestino_delgado",
-    "intestino_grueso",
-    "higado",
-    "vias_biliares",
-    "vesicula_biliar",
-    "pancreas",
+SPLACHNOLOGY_DESCRIPTIONS = {
+    "cavidad_oral": "estructura, límites y contenido de la cavidad oral",
+    "lengua": "músculos, inervación y vascularización de la lengua",
+    "glandulas_salivales": "glándulas mayores y menores, drenaje y función",
+    "faringe": "divisiones, músculos e irrigación",
+    "esofago": "trayecto, capas y relaciones",
+    "estomago": "regiones, irrigación e inervación",
+    "intestino_delgado": "duodeno, yeyuno e íleon",
+    "intestino_grueso": "colon, ciego y recto",
+    "higado": "segmentación, irrigación y drenaje",
+    "vias_biliares": "conductos biliares y drenaje",
+    "vesicula_biliar": "estructura e irrigación",
+    "pancreas": "regiones, función e irrigación",
 
-    # Sistema respiratorio
-    "cavidad_nasal",
-    "senos_paranasales",
-    "laringe",
-    "traquea",
-    "bronquios",
-    "pulmones",
-    "pleura",
+    "cavidad_nasal": "estructura y límites",
+    "senos_paranasales": "tipos y drenaje",
+    "laringe": "cartílagos, músculos e inervación",
+    "traquea": "estructura y relaciones",
+    "bronquios": "división bronquial",
+    "pulmones": "lóbulos y segmentación",
+    "pleura": "hojas pleurales y cavidad",
 
-    # Sistema urinario
-    "rinon",
-    "ureter",
-    "vejiga",
-    "uretra",
+    "rinon": "estructura, nefrona e irrigación",
+    "ureter": "trayecto y estrechamientos",
+    "vejiga": "estructura y relaciones",
+    "uretra": "porciones y diferencias sexuales",
 
-    # Sistema reproductor masculino
-    "testiculo",
-    "epididimo",
-    "conducto_deferente",
-    "vesiculas_seminais",
-    "prostata",
-    "pene",
+    "testiculo": "estructura y función",
+    "epididimo": "maduración espermática",
+    "conducto_deferente": "trayecto y función",
+    "vesiculas_seminais": "secreción seminal",
+    "prostata": "estructura e irrigación",
+    "pene": "estructura y vascularización",
 
-    # Sistema reproductor femenino
-    "ovario",
-    "trompas_uterinas",
-    "utero",
-    "vagina",
-    "genitales_externos_femeninos",
+    "ovario": "estructura y función",
+    "trompas_uterinas": "segmentos y función",
+    "utero": "estructura y capas",
+    "vagina": "estructura y relaciones",
+    "genitales_externos_femeninos": "vulva y componentes",
 
-    # Peritoneo y cavidad
-    "peritoneo",
-    "mesenterios",
-    "epiplones",
-    "retroperitoneo",
+    "peritoneo": "hojas y cavidad peritoneal",
+    "mesenterios": "fijación de vísceras",
+    "epiplones": "omento mayor y menor",
+    "retroperitoneo": "órganos retroperitoneales",
 
-    # Sistema linfático (IMPORTANTÍSIMO)
-    "linfatico_abdominal",
-    "linfatico_toracico",
-    "conducto_toracico",
-    "ganglios_linfaticos_abdominales",
-    "ganglios_linfaticos_toracicos"
+    "linfatico_abdominal": "drenaje linfático abdominal",
+    "linfatico_toracico": "linfáticos torácicos",
+    "conducto_toracico": "trayecto y drenaje",
+    "ganglios_linfaticos_abdominales": "grupos ganglionares abdominales",
+    "ganglios_linfaticos_toracicos": "ganglios torácicos",
 
-    # Peritoneo específico
-    "peritoneo_fascia_coalescencia",
+    "peritoneo_fascia_coalescencia": "fascias de coalescencia y fijación",
 
-    # Linfáticos
-    "linfaticos_cabeza_cuello",
-    "linfaticos_pelvicos",
-    "linfaticos_abdominales_detallados",
-    "linfaticos_toracicos_detallados",
+    "linfaticos_cabeza_cuello": "drenaje linfático de cabeza y cuello",
+    "linfaticos_pelvicos": "linfáticos de pelvis",
+    "linfaticos_abdominales_detallados": "red linfática abdominal detallada",
+    "linfaticos_toracicos_detallados": "red linfática torácica",
 
-    # Drenaje venoso (antes seria tag)
-    "drenaje_venoso_superficial_abdominal",
-    "drenaje_venoso_profundo_abdominal",
-    "drenaje_venoso_superficial_pelvico",
-    "drenaje_venoso_profundo_pelvico",
+    "drenaje_venoso_superficial_abdominal": "venas superficiales abdominales",
+    "drenaje_venoso_profundo_abdominal": "sistema venoso profundo abdominal",
+    "drenaje_venoso_superficial_pelvico": "venas superficiales pélvicas",
+    "drenaje_venoso_profundo_pelvico": "drenaje venoso profundo pélvico",
 
-    # Irrigación (granularizada)
-    "irrigacion_digestivo",
-    "irrigacion_respiratorio",
-    "irrigacion_pelvico",
+    "irrigacion_digestivo": "arterias del sistema digestivo",
+    "irrigacion_respiratorio": "vascularización respiratoria",
+    "irrigacion_pelvico": "arterias pélvicas",
 
-    # Miologia visceral (importante e faltante)
-    "musculos_abdomen",
-    "musculatura_abdominal",
-    "musculatura_respiratoria",
-    "musculatura_pelvica"
-]
+    "musculos_abdomen": "músculos de la pared abdominal",
+    "musculatura_abdominal": "función y organización muscular abdominal",
+    "musculatura_respiratoria": "músculos respiratorios",
+    "musculatura_pelvica": "suelo pélvico"
+}
 
-NEUROANATOMY = [
-    # Sistema nervioso central
-    "medula_espinal",
-    "tronco_encefalico",
-    "bulbo_raquideo",
-    "puente",
-    "mesencefalo",
+NEURO_DESCRIPTIONS = {
+    "medula_espinal": "segmentos, sustancia gris y blanca",
+    "tronco_encefalico": "mesencéfalo, puente y bulbo",
+    "bulbo_raquideo": "núcleos y funciones",
+    "puente": "estructura y conexiones",
+    "mesencefalo": "pedúnculos y colículos",
 
-    "cerebelo",
-    "diencefalo",
-    "talamus",
-    "hipotalamo",
+    "cerebelo": "lóbulos y funciones motoras",
+    "diencefalo": "tálamo e hipotálamo",
+    "talamus": "núcleos y funciones",
+    "hipotalamo": "control autonómico",
 
-    "telencefalo",
-    "corteza_cerebral",
-    "lobulos_cerebrales",
-    "ganglios_basales",
+    "telencefalo": "hemisferios cerebrales",
+    "corteza_cerebral": "áreas funcionales",
+    "lobulos_cerebrales": "división cortical",
+    "ganglios_basales": "núcleos profundos",
 
-    # Vías
-    "vias_motoras",
-    "vias_piramidales",
-    "vias_extrapiramidales",
-    "vias_sensitivas",
+    "vias_motoras": "vías descendentes",
+    "vias_piramidales": "tracto corticoespinal",
+    "vias_extrapiramidales": "control motor involuntario",
+    "vias_sensitivas": "vías ascendentes",
 
-    # Nervios craneales
-    "nervios_craneales",
-    "nervio_olfatorio",
-    "nervio_optico",
-    "nervio_oculomotor",
-    "nervio_troclear",
-    "nervio_trigemino",
-    "nervio_abducens",
-    "nervio_facial",
-    "nervio_vestibulococlear",
-    "nervio_glosofaringeo",
-    "nervio_vago",
-    "nervio_accesorio",
-    "nervio_hipogloso",
+    "nervios_craneales": "pares craneales y funciones",
+    "nervio_olfatorio": "olfacción",
+    "nervio_optico": "visión",
+    "nervio_oculomotor": "movimientos oculares",
+    "nervio_troclear": "músculo oblicuo superior",
+    "nervio_trigemino": "sensibilidad facial",
+    "nervio_abducens": "músculo recto lateral",
+    "nervio_facial": "expresión facial",
+    "nervio_vestibulococlear": "audición y equilibrio",
+    "nervio_glosofaringeo": "deglución y gusto",
+    "nervio_vago": "inervación parasimpática",
+    "nervio_accesorio": "inervación de ECM y trapecio",
+    "nervio_hipogloso": "movimiento lingual",
 
-    # Sistema autónomo
-    "sistema_nervioso_autonomo",
-    "simpatico",
-    "parasimpatico",
+    "sistema_nervioso_autonomo": "simpático y parasimpático",
+    "simpatico": "respuestas de alerta",
+    "parasimpatico": "funciones viscerales",
 
-    # Meninges y LCR
-    "meninges",
-    "liquido_cefalorraquideo",
-    "ventriculos_cerebrales",
+    "meninges": "duramadre, aracnoides y piamadre",
+    "liquido_cefalorraquideo": "producción y circulación",
+    "ventriculos_cerebrales": "sistema ventricular",
 
-    # Vascularización
-    "irrigacion_cerebral",
-    "circulo_de_willis",
-    "senos_venosos",
+    "irrigacion_cerebral": "arterias cerebrales",
+    "circulo_de_willis": "anastomosis arterial",
+    "senos_venosos": "drenaje venoso dural",
 
-    # Órganos de los sentidos
-    "ojo",
-    "oido",
-    "vias_opticas",
-    "vias_auditivas"
+    "ojo": "estructura ocular",
+    "oido": "oído externo, medio e interno",
+    "vias_opticas": "trayecto visual",
+    "vias_auditivas": "trayecto auditivo",
 
-    # Drenaje venoso cerebral (MUITO IMPORTANTE)
-    "drenaje_venoso_superficial_cerebral",
-    "drenaje_venoso_profundo_cerebral",
+    "drenaje_venoso_superficial_cerebral": "venas superficiales",
+    "drenaje_venoso_profundo_cerebral": "sistema venoso profundo",
 
-    # Linfático (adaptado para subtópico)
-    "drenaje_linfatico_cerebral",
+    "drenaje_linfatico_cerebral": "drenaje linfático encefálico",
 
-    # Sistema arterial específico (faltante real)
-    "sistema_vertebrobasilar",
+    "sistema_vertebrobasilar": "arterias vertebrales y basilar",
 
-    # Complemento importante (opcional mas recomendado)
-    "irrigacion_cerebral_detallada"
-]
+    "irrigacion_cerebral_detallada": "ramas arteriales cerebrales detalladas"
+}
 
 ANATOMY_QUESTION = (
     "You are a senior medical professor specialized in Human Anatomy and an expert "
@@ -257,18 +225,14 @@ ANATOMY_QUESTION = (
     "TASK:"
     "Generate EXACTLY ONE multiple-choice question."
 
-    "SOURCE CONSTRAINT:"
-    "Base the question strictly on the following references:"
-    "- Anatomía Humana, Latarjet & Ruiz Liard "
-    "- Netter Atlas of Human Anatomy "
-    "- Rouvière & Delmas "
-    "- Pró "
-
     "TOPIC:"
     "{TOPIC}"
 
     "SUB TOPIC:"
     "{SUB_TOPIC}"
+
+    "SUB TOPIC DESCRIPTION:"
+    "{SUBTOPIC_DESCRIPTION}"
 
     "DIVERSITY MODE:"
     "{DIVERSITY_MODE}"
@@ -277,69 +241,36 @@ ANATOMY_QUESTION = (
     "Avoid similarity with:"
     "{RECENT_QUESTIONS}"
 
-    "ANSWER CONTROL (CRITICAL - FOLLOW STEP BY STEP):"
-    "STEP 1: Internally determine the correct answer content"
-    "STEP 2: Validate that this answer is uniquely correct"
-    "STEP 3: Create three incorrect alternatives that are plausible but definitively wrong"
-    "STEP 4: Place the correct answer content ONLY in option {CORRECT_LETTER}"
-    "STEP 5: Ensure all other options are incorrect"
-    "STEP 6: Set 'correct_answer' field to {CORRECT_LETTER}"
-
-    "STRICT RULES:"
-    "- The content of option {CORRECT_LETTER} MUST be correct"
-    "- The correct answer MUST NOT appear in any other option"
-    "- Do NOT relabel options after creation"
-    "- Do NOT assign correctness without verifying content"
-
-    "UNIQUE CORRECT ANSWER (CRITICAL):"
-    "- There MUST be exactly ONE correct answer"
-    "- All other options MUST be clearly incorrect when compared to the correct one"
-    "- Incorrect options must not be partially correct or context-dependent"
-    "- Avoid answers that could be interpreted as correct under any circumstance"
-    "- If more than one option could be correct, you MUST internally fix the question before output"
-    "- Ensure exclusivity: only one option satisfies the question fully"
-
-    "CRITICAL STYLE REQUIREMENTS (UBA FORMAT):"
+    "CORE REQUIREMENTS:"
     "- The question MUST be SHORT and DIRECT"
-    "- The question MUST test ONE specific concept"
-    "- DO NOT use clinical cases or patient scenarios"
-    "- DO NOT include unnecessary context"
-    "- DO NOT include clues that make the answer obvious"
-    "- The question should resemble real exam statements"
+    "- The question MUST test ONE concept"
+    "- DO NOT use clinical cases"
+    "- DO NOT add unnecessary context"
 
-    "COHERENCE RULE (VERY IMPORTANT):"
-    "- All answer options MUST belong to the SAME category"
-    "  (e.g., all nerves, all arteries, all muscles)"
-    "- DO NOT mix anatomical systems or unrelated regions"
-    "- The question MUST stay strictly within the given TOPIC and SUB TOPIC"
+    "DOMAIN ENFORCEMENT (CRITICAL):"
+    "- The question MUST be strictly about {SUB_TOPIC}"
+    "- Use ONLY structures related to this subtopic"
+    "- DO NOT include structures from other systems"
+    "- All answer options MUST belong to the same anatomical category"
 
-    "COGNITIVE LEVEL:"
-    "- Focus on recognition and conceptual distinction"
-    "- Avoid multi-step reasoning"
-    "- Avoid overly complex logic"
+    "DIVERSITY CONTROL:"
+    "- Apply {DIVERSITY_MODE} only within the subtopic context"
+    "- It must NOT override anatomical correctness"
 
-    "DISTRACTOR RULES:"
-    "- All incorrect options must be plausible BUT clearly "
-    "incorrect upon precise anatomical knowledge"
-    "- Distractors must be close to the correct concept but contain a specific error"
-    "- Each incorrect option must fail for a different reason"
-    "- Avoid generic or overlapping answers"
-    "- Alternatives must be similar in structure and length"
-    "- Avoid extreme or obviously incorrect answers"
-    "- Avoid hints in wording, length, or specificity"
+    "ANSWER CONTROL (STEP BY STEP):"
+    "1. Determine the correct answer"
+    "2. Ensure it is uniquely correct"
+    "3. Create 3 plausible but incorrect alternatives"
+    "4. Place the correct answer in {CORRECT_LETTER}"
+    "5. Mark 'correct_answer' as {CORRECT_LETTER}"
 
     "LANGUAGE:"
     "- Rioplatense Spanish"
-    "- Use formal academic tone"
-    "- Keep wording concise"
+    "- Concise academic tone"
 
-    "OUTPUT RULES (STRICT):"
-    "- Return ONLY valid JSON"
-    "- No extra text"
-    "- No comments"
-    "- No trailing commas"
+    "OUTPUT:"
+    "Return ONLY valid JSON"
 
-    "JSON STRUCTURE:"
     "{"
     "\"question\": \"...\","  
     "\"answer_a\": \"...\","  
@@ -352,16 +283,4 @@ ANATOMY_QUESTION = (
     "\"explanation_d\": \"...\","  
     "\"correct_answer\": \"A|B|C|D\""
     "}"
-
-    "FINAL VALIDATION (MANDATORY):"
-    "1. Question is short and direct"
-    "2. No clinical scenario is present"
-    "3. Only ONE concept is tested"
-    "4. All options belong to same category"
-    "5. The content of option {CORRECT_LETTER} is correct"
-    "6. The 'correct_answer' field equals {CORRECT_LETTER}"
-    "7. NO other option is correct under any interpretation"
-    "8. Each incorrect option has a clear and identifiable error"
-    "9. No obvious clues are present"
-    "10. Matches UBA exam style"
 )

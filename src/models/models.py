@@ -141,6 +141,7 @@ class Questions(Base):
         DateTime, nullable=False, server_default=text("now()")
     )
     subtopic: Mapped[str] = mapped_column(Text, nullable=False)
+    subtopic_description: Mapped[str] = mapped_column(Text, nullable=False)
     answer_e: Mapped[Optional[str]] = mapped_column(Text)
     explanation_e: Mapped[Optional[str]] = mapped_column(Text)
     updated_at: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)

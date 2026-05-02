@@ -1,4 +1,5 @@
 """Pydantic schemas for question data validation and serialization."""
+
 from typing import Optional
 from uuid import UUID
 
@@ -7,6 +8,7 @@ from pydantic import BaseModel
 
 class QuestionsBase(BaseModel):
     """Base schema for multiple-choice question data."""
+
     question: str
     answer_a: str
     answer_b: str
@@ -31,17 +33,19 @@ class QuestionsBase(BaseModel):
                 "explanation_a": "São Paulo é a maior cidade, mas não a capital.",
                 "explanation_b": "Rio de Janeiro foi a capital antiga.",
                 "explanation_c": "Brasília é a capital atual.",
-                "explanation_d": "Belo Horizonte é uma cidade importante, mas não a capital."
+                "explanation_d": "Belo Horizonte é uma cidade importante, mas não a capital.",
             }
         }
 
 
 class QuestionsGet(QuestionsBase):
     """Schema for retrieving question data with ID."""
+
     id: UUID
     institution_id: UUID
     topic: str
     subtopic: str
+    subtopic_description: str
     diversity_mode: str
 
     class Config:
@@ -58,18 +62,16 @@ class QuestionsGet(QuestionsBase):
                 "explanation_a": "São Paulo é a maior cidade, mas não a capital.",
                 "explanation_b": "Rio de Janeiro foi a capital antiga.",
                 "explanation_c": "Brasília é a capital atual.",
-                "explanation_d": "Belo Horizonte é uma cidade importante, mas não a capital."
+                "explanation_d": "Belo Horizonte é uma cidade importante, mas não a capital.",
             }
         }
 
+
 class OnlyQuestionsGetSchema(BaseModel):
     """Schema for retrieving question data without ID."""
+
     question: str
 
     class Config:
         from_attributes = True
-        json_schema_extra = {
-            "example": {
-                "question": "Qual é a capital do Brasil?"
-            }
-        }
+        json_schema_extra = {"example": {"question": "Qual é a capital do Brasil?"}}
