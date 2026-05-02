@@ -20,11 +20,6 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str
     ALGORITHM: str
     JWT_EXPIRATION_MINUTES: int = 30
-    AUTH_COOKIE_NAME: str = "access_token"
-    AUTH_COOKIE_SECURE: bool = True # Validar formatação dessa maneira / False
-    AUTH_COOKIE_SAMESITE: str = "lax" # Validar formatação dessa maneira / "lax" - "none"
-    AUTH_COOKIE_DOMAIN: str | None = None
-    AUTH_COOKIE_PATH: str = "/"
     FRONTEND_ORIGINS: list[str] = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
@@ -43,15 +38,6 @@ class Settings(BaseSettings):
             return [item.strip() for item in value.split(",") if item.strip()]
         return value
 
-    @field_validator("AUTH_COOKIE_SAMESITE", mode="before")
-    @classmethod
-    def normalize_cookie_samesite(cls, value: str) -> str:
-        """Normalize and validate SameSite values accepted by browsers."""
-        normalized = value.lower()
-        if normalized not in {"lax", "strict", "none"}:
-            raise ValueError("AUTH_COOKIE_SAMESITE must be lax, strict, or none")
-        return normalized
-
     @property
     def database_url(self):
         """Build the database URL from individual components."""
@@ -60,11 +46,6 @@ class Settings(BaseSettings):
             f"{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
             f"@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
         )
-
-    @property
-    def jwt_expiration_seconds(self) -> int:
-        """Return the JWT expiration in seconds for both token and cookie settings."""
-        return self.JWT_EXPIRATION_MINUTES * 60
 
     class Config:
         """Configuration for loading environment variables from a .env file."""

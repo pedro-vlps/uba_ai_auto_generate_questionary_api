@@ -18,9 +18,10 @@ class LoginSchema(BaseModel):
 
 
 class LoginResponseSchema(BaseModel):
-    """Schema for login response with authenticated user data."""
+    """Schema for login response with authenticated user data and JWT token."""
 
     user: UserInstitutionSchema
+    token: str
 
     class Config:
         """Configure Pydantic to allow population from ORM objects and provide an example."""
@@ -42,15 +43,17 @@ class LoginResponseSchema(BaseModel):
                         "id": "123e4567-e89b-12d3-a456-426614174002",
                         "name": "Admin",
                     },
-                }
+                },
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
             }
         }
 
 
 class LoginAdminResponseSchema(BaseModel):
-    """Schema for login response with authenticated user data."""
+    """Schema for login response with authenticated user data and JWT token."""
 
     user: UsersNoPasswordResponse
+    token: str
 
     class Config:
         """Configure Pydantic to allow population from ORM objects and provide an example."""
@@ -64,5 +67,6 @@ class LoginAdminResponseSchema(BaseModel):
                     "nickname": "johndoe",
                     "global_role": "admin",
                 },
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
             }
         }

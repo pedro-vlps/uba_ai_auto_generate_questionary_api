@@ -12,13 +12,42 @@ function AtualizarVersaoPyproject {
         return
     }
 
-    $conteudo = Get-Content $arquivo
+    $conteudo = Get-Content $arquivo -Raw -Encoding UTF8
 
     $novoConteudo = $conteudo -replace 'version\s*=\s*".*?"', "version = `"$version`""
 
-    Set-Content -Path $arquivo -Value $novoConteudo -Encoding UTF8
+    [System.IO.File]::WriteAllText(
+        [System.IO.Path]::GetFullPath($arquivo),
+        $novoConteudo,
+        [System.Text.UTF8Encoding]::new($false)
+    )
 
     Write-Host "Version updated in pyproject.toml to $version"
+}
+
+function AtualizarVersaoPackageJson {
+    param (
+        [string]$version
+    )
+
+    $arquivo = "package.json"
+
+    if (-not (Test-Path $arquivo)) {
+        Write-Host "package.json not found, skipping update."
+        return
+    }
+
+    $conteudo = Get-Content $arquivo -Raw -Encoding UTF8
+
+    $novoConteudo = $conteudo -replace '"version"\s*:\s*".*?"', "`"version`": `"$version`""
+
+    [System.IO.File]::WriteAllText(
+        [System.IO.Path]::GetFullPath($arquivo),
+        $novoConteudo,
+        [System.Text.UTF8Encoding]::new($false)
+    )
+
+    Write-Host "Version updated in package.json to $version"
 }
 
 # Ask commit type
@@ -137,6 +166,7 @@ if ($gerarVersao -eq "y") {
     $tag = "v$novaVersao"
     
     AtualizarVersaoPyproject -version $novaVersao
+    AtualizarVersaoPackageJson -version $novaVersao
 
     # ===== CHANGELOG INPUT =====
     Write-Host ""
@@ -161,17 +191,27 @@ if ($gerarVersao -eq "y") {
     $conteudoNovaVersao = "## $tag`n`n" + ($notas -join "`n") + "`n`n"
 
     if (Test-Path $changelogPath) {
-        $conteudoAntigo = Get-Content $changelogPath -Raw
+        $conteudoAntigo = Get-Content $changelogPath -Raw -Encoding UTF8
         $novoConteudo = $conteudoNovaVersao + $conteudoAntigo
     } else {
         # Create new changelog file with header
         $novoConteudo = "# Changelog`n`n" + $conteudoNovaVersao
     }
 
-    Set-Content -Path $changelogPath -Value $novoConteudo -Encoding UTF8
+    [System.IO.File]::WriteAllText(
+        [System.IO.Path]::GetFullPath($changelogPath),
+        $novoConteudo,
+        [System.Text.UTF8Encoding]::new($false)
+    )
 
     # ===== CHANGELOG COMMIT =====
-    git add .\CHANGELOG.md .\pyproject.toml
+    git add $changelogPath
+    if (Test-Path "pyproject.toml") {
+        git add "pyproject.toml"
+    }
+    if (Test-Path "package.json") {
+        git add "package.json"
+    }
     git commit -m "CHANGELOG.md atualization for $tag"
 
     # ===== TAG =====
