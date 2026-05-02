@@ -41,7 +41,8 @@ class QuestionsGet(QuestionsBase):
     id: UUID
     institution_id: UUID
     topic: str
-    subject: str
+    subtopic: str
+    diversity_mode: str
 
     class Config:
         from_attributes = True

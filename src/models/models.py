@@ -81,11 +81,11 @@ class Users(Base):
     name: Mapped[str] = mapped_column(Text, nullable=False)
     nickname: Mapped[str] = mapped_column(Text, nullable=False)
     password: Mapped[str] = mapped_column(Text, nullable=False)
-    created_at: Mapped[datetime.datetime] = mapped_column(
-        DateTime, nullable=False, server_default=text("now()")
-    )
     global_role: Mapped[str] = mapped_column(
         String(50), nullable=False, server_default=text("'User'::character varying")
+    )
+    created_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime, nullable=False, server_default=text("now()")
     )
     updated_at: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
 
@@ -122,11 +122,11 @@ class Questions(Base):
         Uuid,
         nullable=False,
         server_default=text(
-            "(current_setting('app.current_institution_id'::text))::uuid"
+            "(current_setting('app.current_institution_id'::text, true))::uuid"
         ),
     )
     topic: Mapped[str] = mapped_column(String(100), nullable=False)
-    subject: Mapped[str] = mapped_column(Text, nullable=False)
+    diversity_mode: Mapped[str] = mapped_column(Text, nullable=False)
     question: Mapped[str] = mapped_column(Text, nullable=False)
     answer_a: Mapped[str] = mapped_column(Text, nullable=False)
     answer_b: Mapped[str] = mapped_column(Text, nullable=False)
@@ -140,6 +140,7 @@ class Questions(Base):
     created_at: Mapped[datetime.datetime] = mapped_column(
         DateTime, nullable=False, server_default=text("now()")
     )
+    subtopic: Mapped[str] = mapped_column(Text, nullable=False)
     answer_e: Mapped[Optional[str]] = mapped_column(Text)
     explanation_e: Mapped[Optional[str]] = mapped_column(Text)
     updated_at: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)

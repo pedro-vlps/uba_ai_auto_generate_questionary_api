@@ -18,6 +18,6 @@ class AnatomySchema(BaseModel):
         from_attributes = True
         json_schema_extra = {
             "example": {
-                "parameter": "Neuro"
+                "parameter": "Neuroanatomy | Splanchnology | Locomotor"
             }
         }

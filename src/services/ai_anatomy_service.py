@@ -13,6 +13,7 @@ class AIAnatomyService:
     @staticmethod
     async def generate_response(
         parameter: str,
+        subtopic: str,
         diversity_mode: str,
         recent_questions: list,
     ):
@@ -28,6 +29,8 @@ class AIAnatomyService:
         """
         # Format the prompt with the topic
         formatted_question = ANATOMY_QUESTION.replace("{TOPIC}", parameter)
+
+        formatted_question = ANATOMY_QUESTION.replace("{SUB_TOPIC}", subtopic)
 
         formatted_question = formatted_question.replace(
             "{DIVERSITY_MODE}", diversity_mode

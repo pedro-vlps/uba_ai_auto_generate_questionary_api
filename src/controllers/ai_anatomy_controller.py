@@ -9,6 +9,7 @@ from src.services.ai_anatomy_service import AIAnatomyService
 from src.services.questions_service import QuestionsService, questions_service
 
 from src.helpers.questions_text import UBA_DIVERSITY_MODES
+from src.helpers.check_subtopic import check_anatomy_sub_topic
 
 
 class AIAnatomyController:
@@ -40,15 +41,18 @@ class AIAnatomyController:
                 detail="institution_id is required and must be a valid UUID.",
             )
 
-        used_subject = random.choice(UBA_DIVERSITY_MODES)
+        used_diversity_mode = random.choice(UBA_DIVERSITY_MODES)
+        used_subtopic = check_anatomy_sub_topic(parameter)
         last_questions = await QuestionsService.get_last_three_questions(db)
+
         response = await AIAnatomyService.generate_response(
-            parameter, used_subject, last_questions
+            parameter, used_subtopic, used_diversity_mode, last_questions
         )
 
         json_response = json.loads(response.output[0].content[0].text)
         json_response["topic"] = parameter
-        json_response["subject"] = used_subject
+        json_response["subtopic"] = used_subtopic
+        json_response["diversity_mode"] = used_diversity_mode
         json_response["institution_id"] = institution_id
 
         question_response = await questions_service.create(json_response, db)

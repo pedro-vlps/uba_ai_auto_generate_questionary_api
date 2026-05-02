@@ -1,4 +1,17 @@
-"""Prompt templates for AI-generated anatomy questions."""
+"""
+    Prompt templates for AI-generated anatomy questions.
+
+    Bibliography used on prompt and topics generation:
+
+    - Anatomía Humana, 4th Edition by Latarjet & Ruiz Liard
+    
+    - Mini-NETTER Atlas of Human Anatomy, 8th Edition by Frank H. Netter, MD
+    
+    - Anatomía Humana Descriptiva, Topográfica y Funcional 11th Edition by 
+        Henri Rouvière & André Delmas
+    
+    - Anatomía Clínica, 3rd Edition by Eduardo Pró
+"""
 
 UBA_DIVERSITY_MODES = [
     "identification",
@@ -9,11 +22,233 @@ UBA_DIVERSITY_MODES = [
     "exception"
 ]
 
-# "- Anatomía Humana, 4th Edition by Latarjet & Ruiz Liard "
-#     "- Mini-NETTER Atlas of Human Anatomy, 8th Edition by Frank H. Netter, MD "
-#     "- Anatomía Humana Descriptiva, Topográfica y Funcional, "
-#     "11th Edition by Henri Rouvière & André Delmas "
-#     "- Anatomía Clínica, 3rd Edition by Eduardo Pró "
+LOCOMOTOR = [
+    # Osteología
+    "osteologia_general",
+    "osteologia_miembro_superior",
+    "osteologia_miembro_inferior",
+    "osteologia_columna_vertebral",
+    "osteologia_torax",
+    "osteologia_craneo",
+
+    # Artrología
+    "articulaciones_general",
+    "articulaciones_miembro_superior",
+    "articulaciones_miembro_inferior",
+    "articulaciones_columna",
+    "articulaciones_craneo",
+
+    # Miología
+    "miologia_general",
+    "musculos_miembro_superior",
+    "musculos_miembro_inferior",
+    "musculos_espalda",
+    "musculos_torax",
+    "musculos_abdomen",
+    "musculos_cabeza",
+    "musculos_cuello",
+
+    # Compartimentos / regiones
+    "compartimentos_brazo",
+    "compartimentos_antebrazo",
+    "compartimentos_mano",
+    "compartimentos_muslo",
+    "compartimentos_pierna",
+    "compartimentos_pie",
+
+    # Vasos locomotor
+    "arterias_miembro_superior",
+    "arterias_miembro_inferior",
+    "venas_miembro_superior",
+    "venas_miembro_inferior",
+
+    # Nervios periféricos
+    "plexo_braquial",
+    "plexo_lumbar",
+    "plexo_sacro",
+    "nervios_miembro_superior",
+    "nervios_miembro_inferior",
+
+    # Anatomía regional
+    "axila",
+    "region_deltoidea",
+    "fosa_cubital",
+    "canal_carpiano",
+    "triangulo_femoral",
+    "conducto_aductor",
+    "fosa_poplitea"
+
+    # Regiões topográficas
+    "regiones_topograficas_cabeza",
+    "regiones_topograficas_cuello",
+    "regiones_topograficas_tronco",
+    "regiones_topograficas_miembro_superior",
+    "regiones_topograficas_miembro_inferior",
+
+    # Sistema linfático locomotor
+    "linfaticos_miembro_superior",
+    "linfaticos_miembro_inferior",
+    "linfaticos_dorso",
+    "linfaticos_nuca"
+]
+
+SPLACHNOLOGY = [
+    # Sistema digestivo
+    "cavidad_oral",
+    "lengua",
+    "glandulas_salivales",
+    "faringe",
+    "esofago",
+    "estomago",
+    "intestino_delgado",
+    "intestino_grueso",
+    "higado",
+    "vias_biliares",
+    "vesicula_biliar",
+    "pancreas",
+
+    # Sistema respiratorio
+    "cavidad_nasal",
+    "senos_paranasales",
+    "laringe",
+    "traquea",
+    "bronquios",
+    "pulmones",
+    "pleura",
+
+    # Sistema urinario
+    "rinon",
+    "ureter",
+    "vejiga",
+    "uretra",
+
+    # Sistema reproductor masculino
+    "testiculo",
+    "epididimo",
+    "conducto_deferente",
+    "vesiculas_seminais",
+    "prostata",
+    "pene",
+
+    # Sistema reproductor femenino
+    "ovario",
+    "trompas_uterinas",
+    "utero",
+    "vagina",
+    "genitales_externos_femeninos",
+
+    # Peritoneo y cavidad
+    "peritoneo",
+    "mesenterios",
+    "epiplones",
+    "retroperitoneo",
+
+    # Sistema linfático (IMPORTANTÍSIMO)
+    "linfatico_abdominal",
+    "linfatico_toracico",
+    "conducto_toracico",
+    "ganglios_linfaticos_abdominales",
+    "ganglios_linfaticos_toracicos"
+
+    # Peritoneo específico
+    "peritoneo_fascia_coalescencia",
+
+    # Linfáticos
+    "linfaticos_cabeza_cuello",
+    "linfaticos_pelvicos",
+    "linfaticos_abdominales_detallados",
+    "linfaticos_toracicos_detallados",
+
+    # Drenaje venoso (antes seria tag)
+    "drenaje_venoso_superficial_abdominal",
+    "drenaje_venoso_profundo_abdominal",
+    "drenaje_venoso_superficial_pelvico",
+    "drenaje_venoso_profundo_pelvico",
+
+    # Irrigación (granularizada)
+    "irrigacion_digestivo",
+    "irrigacion_respiratorio",
+    "irrigacion_pelvico",
+
+    # Miologia visceral (importante e faltante)
+    "musculatura_abdominal",
+    "musculatura_respiratoria",
+    "musculatura_pelvica"
+]
+
+NEUROANATOMY = [
+    # Sistema nervioso central
+    "medula_espinal",
+    "tronco_encefalico",
+    "bulbo_raquideo",
+    "puente",
+    "mesencefalo",
+
+    "cerebelo",
+    "diencefalo",
+    "talamus",
+    "hipotalamo",
+
+    "telencefalo",
+    "corteza_cerebral",
+    "lobulos_cerebrales",
+    "ganglios_basales",
+
+    # Vías
+    "vias_motoras",
+    "vias_piramidales",
+    "vias_extrapiramidales",
+    "vias_sensitivas",
+
+    # Nervios craneales
+    "nervios_craneales",
+    "nervio_olfatorio",
+    "nervio_optico",
+    "nervio_oculomotor",
+    "nervio_troclear",
+    "nervio_trigemino",
+    "nervio_abducens",
+    "nervio_facial",
+    "nervio_vestibulococlear",
+    "nervio_glosofaringeo",
+    "nervio_vago",
+    "nervio_accesorio",
+    "nervio_hipogloso",
+
+    # Sistema autónomo
+    "sistema_nervioso_autonomo",
+    "simpatico",
+    "parasimpatico",
+
+    # Meninges y LCR
+    "meninges",
+    "liquido_cefalorraquideo",
+    "ventriculos_cerebrales",
+
+    # Vascularización
+    "irrigacion_cerebral",
+    "circulo_de_willis",
+    "senos_venosos",
+
+    # Órganos de los sentidos
+    "ojo",
+    "oido",
+    "vias_opticas",
+    "vias_auditivas"
+
+    # Drenaje venoso cerebral (MUITO IMPORTANTE)
+    "drenaje_venoso_superficial_cerebral",
+    "drenaje_venoso_profundo_cerebral",
+
+    # Linfático (adaptado para subtópico)
+    "drenaje_linfatico_cerebral",
+
+    # Sistema arterial específico (faltante real)
+    "sistema_vertebrobasilar",
+
+    # Complemento importante (opcional mas recomendado)
+    "irrigacion_cerebral_detallada"
+]
 
 ANATOMY_QUESTION = (
     "You are a senior medical professor specialized in Human Anatomy and an expert "
@@ -31,6 +266,9 @@ ANATOMY_QUESTION = (
 
     "TOPIC:"
     "{TOPIC}"
+
+    "SUB TOPIC"
+    "{SUB_TOPIC}"
 
     "DIVERSITY MODE:"
     "{DIVERSITY_MODE}"
@@ -51,7 +289,7 @@ ANATOMY_QUESTION = (
     "- All answer options MUST belong to the SAME category"
     "  (e.g., all nerves, all arteries, all muscles)"
     "- DO NOT mix anatomical systems or unrelated regions"
-    "- The question MUST stay strictly within the given TOPIC"
+    "- The question MUST stay strictly within the given TOPIC and SUB TOPIC"
 
     "COGNITIVE LEVEL:"
     "- Focus on recognition and conceptual distinction"
