@@ -1,3 +1,9 @@
+## v1.5.1
+
+- Fixing uncompatible questions generation
+- Changing question validation schema to send english words
+- Increasing compatibility and questions quality
+
 ## v1.5.0
 
 - Changed Cookies token validation to Header token validation (Authorization)
