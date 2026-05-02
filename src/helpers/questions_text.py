@@ -44,7 +44,6 @@ LOCOMOTOR = [
     "musculos_miembro_inferior",
     "musculos_espalda",
     "musculos_torax",
-    "musculos_abdomen",
     "musculos_cabeza",
     "musculos_cuello",
 
@@ -171,6 +170,7 @@ SPLACHNOLOGY = [
     "irrigacion_pelvico",
 
     # Miologia visceral (importante e faltante)
+    "musculos_abdomen",
     "musculatura_abdominal",
     "musculatura_respiratoria",
     "musculatura_pelvica"
