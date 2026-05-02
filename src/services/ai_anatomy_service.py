@@ -15,6 +15,7 @@ class AIAnatomyService:
         parameter: str,
         subtopic: str,
         diversity_mode: str,
+        correct_letter: str,
         recent_questions: list,
     ):
         """
@@ -31,6 +32,10 @@ class AIAnatomyService:
         formatted_question = ANATOMY_QUESTION.replace("{TOPIC}", parameter)
 
         formatted_question = ANATOMY_QUESTION.replace("{SUB_TOPIC}", subtopic)
+
+        formatted_question = ANATOMY_QUESTION.replace(
+            "{CORRECT_LETTER}", correct_letter
+        )
 
         formatted_question = formatted_question.replace(
             "{DIVERSITY_MODE}", diversity_mode

@@ -267,7 +267,7 @@ ANATOMY_QUESTION = (
     "TOPIC:"
     "{TOPIC}"
 
-    "SUB TOPIC"
+    "SUB TOPIC:"
     "{SUB_TOPIC}"
 
     "DIVERSITY MODE:"
@@ -276,6 +276,11 @@ ANATOMY_QUESTION = (
     "ANTI-REPETITION:"
     "Avoid similarity with:"
     "{RECENT_QUESTIONS}"
+
+    "ANSWER CONTROL (MANDATORY):"
+    "- The correct answer MUST be option {CORRECT_LETTER}"
+    "- Ensure that this constraint is respected exactly"
+    "- Do NOT default to option A"
 
     "CRITICAL STYLE REQUIREMENTS (UBA FORMAT):"
     "- The question MUST be SHORT and DIRECT"
@@ -332,7 +337,7 @@ ANATOMY_QUESTION = (
     "2. No clinical scenario is present"
     "3. Only ONE concept is tested"
     "4. All options belong to same category"
-    "5. Only ONE correct answer exists"
+    "5. The correct answer is EXACTLY {CORRECT_LETTER}"
     "6. No obvious clues are present"
     "7. Matches UBA exam style"
 )
