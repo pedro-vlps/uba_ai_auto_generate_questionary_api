@@ -1,3 +1,7 @@
+## v1.6.2
+
+- Added random letter correct answer to remove 'only A correct answer cicle'
+
 ## v1.6.1
 
 - Removed 'musculos_abdomen' from Locomotor to Splacno
