@@ -1,3 +1,7 @@
+## v1.6.11
+
+- Increasing the quality of the prompt
+
 ## v1.6.10
 
 - Increasing the quality of the prompt
