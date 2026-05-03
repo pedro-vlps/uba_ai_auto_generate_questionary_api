@@ -79,7 +79,7 @@ LOCOMOTOR_DESCRIPTIONS = {
 
 SPLACHNOLOGY_DESCRIPTIONS = {
 
-   "regiones_topograficas_cabeza": "división anatómica superficial de la cabeza",
+    "regiones_topograficas_cabeza": "división anatómica superficial de la cabeza",
     "regiones_topograficas_cuello": "triángulos cervicales y contenidos",
     "regiones_topograficas_tronco": "regiones del tronco y referencias anatómicas",
 
@@ -222,7 +222,6 @@ NEURO_DESCRIPTIONS = {
 
     "irrigacion_cerebral_detallada": "ramas arteriales y sus porciones cerebrales detalladas"
 }
-
 
 ANATOMY_QUESTION = (
     "You are a senior medical professor specialized in Human Anatomy and an expert "
