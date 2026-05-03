@@ -18,31 +18,29 @@ UBA_DIVERSITY_MODES = [
     "relationship",
     "location",
     "function",
-    "innervation_or_vascularization",
+    "innervation",
+    "vascularization",
     "exception"
 ]
 
 LOCOMOTOR_DESCRIPTIONS = {
     "osteologia_general": "estructura, tipos de huesos, osificación, irrigación e inervación ósea",
-    "osteologia_miembro_superior": "huesos del miembro superior, accidentes óseos y relaciones",
-    "osteologia_miembro_inferior": "huesos del miembro inferior, relieves y funciones",
+    "osteologia_miembro_superior": "huesos del miembro superior, accidentes óseos, relaciones, relieves y funciones", # pylint: disable=line-too-long
+    "osteologia_miembro_inferior": "huesos del miembro inferior, accidentes óseos, relaciones, relieves y funciones", # pylint: disable=line-too-long
     "osteologia_columna_vertebral": "vértebras, características regionales y articulación",
     "osteologia_torax": "esternón, costillas y su organización estructural",
     "osteologia_craneo": "huesos del cráneo, base y bóveda, forámenes",
 
     "articulaciones_general": "tipos articulares, movimientos y estructuras asociadas",
     "articulaciones_miembro_superior": "articulaciones del miembro superior y sus movimientos",
-    "articulaciones_miembro_inferior": "articulaciones del miembro inferior",
+    "articulaciones_miembro_inferior": "articulaciones del miembro inferior y sus movimientos",
     "articulaciones_columna": "articulaciones vertebrales y discos intervertebrales",
     "articulaciones_craneo": "suturas y articulaciones craneales",
 
     "miologia_general": "tipos musculares, inserciones, irrigación e inervación",
     "musculos_miembro_superior": "músculos del miembro superior y sus funciones",
-    "musculos_miembro_inferior": "músculos del miembro inferior",
-    "musculos_espalda": "músculos superficiales y profundos del dorso",
-    "musculos_torax": "músculos intercostales y respiratorios",
-    "musculos_cabeza": "músculos faciales y masticadores",
-    "musculos_cuello": "músculos cervicales y sus funciones",
+    "musculos_miembro_inferior": "músculos del miembro inferior y sus funciones",
+    "musculos_espalda": "músculos superficiales y profundos del dorso y nuca",
 
     "compartimentos_brazo": "compartimentos anterior y posterior del brazo",
     "compartimentos_antebrazo": "compartimentos flexor y extensor",
@@ -54,41 +52,43 @@ LOCOMOTOR_DESCRIPTIONS = {
     "arterias_miembro_superior": "irrigación arterial del miembro superior",
     "arterias_miembro_inferior": "irrigación arterial del miembro inferior",
     "venas_miembro_superior": "drenaje venoso superficial y profundo superior",
-    "venas_miembro_inferior": "drenaje venoso del miembro inferior",
+    "venas_miembro_inferior": "drenaje venoso superficial y profundo miembro inferior",
 
-    "plexo_braquial": "formación, ramos y territorios del plexo braquial",
-    "plexo_lumbar": "nervios del plexo lumbar",
-    "plexo_sacro": "formación y ramas del plexo sacro",
-    "nervios_miembro_superior": "inervación periférica del miembro superior",
-    "nervios_miembro_inferior": "inervación del miembro inferior",
+    "plexo_braquial": "formación, ramos colaterales y profundos y territorios del plexo braquial",
+    "nervios_miembro_superior": "inervación completa del miembro superior y recurridos de los nervios principales", # pylint: disable=line-too-long
+    "nervios_miembro_inferior": "inervación completa del miembro inferior y recurridos de los nervios principales", # pylint: disable=line-too-long
 
     "axila": "límites, contenido y relaciones de la axila",
-    "region_deltoidea": "estructura y contenido de la región deltoidea",
-    "fosa_cubital": "límites y contenido de la fosa cubital",
-    "canal_carpiano": "contenido y límites del túnel carpiano",
+    "region_deltoidea": "limites y contenidos de la región deltoidea",
+    "fosa_cubital": "límites y contenidos de la fosa cubital",
+    "canal_carpiano": "contenidos y límites del túnel carpiano",
     "triangulo_femoral": "límites y contenido del triángulo femoral",
-    "conducto_aductor": "trayecto y contenido del conducto aductor",
-    "fosa_poplitea": "límites y contenido de la fosa poplítea",
+    "conducto_aductor": "trayecto, limites y contenido del conducto aductor",
+    "fosa_poplitea": "límites y contenidos de la fosa poplítea",
 
-    "regiones_topograficas_cabeza": "división anatómica superficial de la cabeza",
-    "regiones_topograficas_cuello": "triángulos cervicales y contenido",
-    "regiones_topograficas_tronco": "regiones del tronco y referencias anatómicas",
-    "regiones_topograficas_miembro_superior": "regiones superficiales del miembro superior",
+    "regiones_topograficas_miembro_superior": "regiones del miembro superior",
     "regiones_topograficas_miembro_inferior": "regiones del miembro inferior",
 
     "linfaticos_miembro_superior": "drenaje linfático del miembro superior",
     "linfaticos_miembro_inferior": "drenaje linfático del miembro inferior",
     "linfaticos_dorso": "linfáticos del dorso",
-    "linfaticos_nuca": "drenaje linfático de la región nucal"
+    "linfaticos_nuca": "drenaje linfático de la región nucal",
+
+    "planimetria": "division del cuerpo en ejes y planes"
 }
 
 SPLACHNOLOGY_DESCRIPTIONS = {
+
+   "regiones_topograficas_cabeza": "división anatómica superficial de la cabeza",
+    "regiones_topograficas_cuello": "triángulos cervicales y contenidos",
+    "regiones_topograficas_tronco": "regiones del tronco y referencias anatómicas",
+
     "cavidad_oral": "estructura, límites y contenido de la cavidad oral",
     "lengua": "músculos, inervación y vascularización de la lengua",
     "glandulas_salivales": "glándulas mayores y menores, drenaje y función",
-    "faringe": "divisiones, músculos e irrigación",
-    "esofago": "trayecto, capas y relaciones",
-    "estomago": "regiones, irrigación e inervación",
+    "faringe": "divisiones, músculos, inervación e irrigación",
+    "esofago": "trayecto, inervación, irrigación y relaciones",
+    "estomago": "regiones, relaciones, irrigación e inervación",
     "intestino_delgado": "duodeno, yeyuno e íleon",
     "intestino_grueso": "colon, ciego y recto",
     "higado": "segmentación, irrigación y drenaje",
@@ -97,43 +97,42 @@ SPLACHNOLOGY_DESCRIPTIONS = {
     "pancreas": "regiones, función e irrigación",
 
     "cavidad_nasal": "estructura y límites",
-    "senos_paranasales": "tipos y drenaje",
-    "laringe": "cartílagos, músculos e inervación",
+    "senos_paranasales": "estructura y límites",
+    "laringe": "cartílagos, músculos, irrigación e inervación",
     "traquea": "estructura y relaciones",
-    "bronquios": "división bronquial",
-    "pulmones": "lóbulos y segmentación",
+    "bronquios": "estructura y relaciones",
+    "pulmones": "lóbulos, segmentación, relaciones, irrigación e inervación",
     "pleura": "hojas pleurales y cavidad",
 
-    "rinon": "estructura, nefrona e irrigación",
-    "ureter": "trayecto y estrechamientos",
-    "vejiga": "estructura y relaciones",
-    "uretra": "porciones y diferencias sexuales",
+    "rinon": "estructura, relaciones e irrigación",
+    "ureter": "trayecto, relacionesl ley de lushka y estrechamientos",
+    "vejiga": "estructura, irrigación, inervación y relaciones",
+    "uretra": "porciones, musculos, inervación, irrigación y diferencias sexuales",
 
-    "testiculo": "estructura y función",
-    "epididimo": "maduración espermática",
-    "conducto_deferente": "trayecto y función",
-    "vesiculas_seminais": "secreción seminal",
-    "prostata": "estructura e irrigación",
-    "pene": "estructura y vascularización",
+    "testiculo": "relaciones, irrigación e inervación",
+    "epididimo": "trayecto y relaciones",
+    "conducto_deferente": "trayecto y relaciones",
+    "vesiculas_seminais": "relaciones y trayecto",
+    "prostata": "estructura, irrigación e inervación",
+    "pene": "periné, estructura, vascularización e inervación",
 
-    "ovario": "estructura y función",
-    "trompas_uterinas": "segmentos y función",
-    "utero": "estructura y capas",
-    "vagina": "estructura y relaciones",
-    "genitales_externos_femeninos": "vulva y componentes",
+    "ovario": "relaciones, ligamentos, irrigación e inervación",
+    "trompas_uterinas": "segmentos, relaciones, ligamentos, irrigación e inervación",
+    "utero": "segmentos, relaciones, ligamentos, irrigación e inervación",
+    "vagina": "estructura, relaciones, ligamentos, irrigación e inervación",
+    "genitales_externos_femeninos": "periné, vulva, componentes, irrigación e inervación",
 
     "peritoneo": "hojas y cavidad peritoneal",
     "mesenterios": "fijación de vísceras",
     "epiplones": "omento mayor y menor",
     "retroperitoneo": "órganos retroperitoneales",
+    "peritoneo_fascia_coalescencia": "fascias de coalescencia y fijación",
 
     "linfatico_abdominal": "drenaje linfático abdominal",
     "linfatico_toracico": "linfáticos torácicos",
     "conducto_toracico": "trayecto y drenaje",
     "ganglios_linfaticos_abdominales": "grupos ganglionares abdominales",
     "ganglios_linfaticos_toracicos": "ganglios torácicos",
-
-    "peritoneo_fascia_coalescencia": "fascias de coalescencia y fijación",
 
     "linfaticos_cabeza_cuello": "drenaje linfático de cabeza y cuello",
     "linfaticos_pelvicos": "linfáticos de pelvis",
@@ -149,26 +148,32 @@ SPLACHNOLOGY_DESCRIPTIONS = {
     "irrigacion_respiratorio": "vascularización respiratoria",
     "irrigacion_pelvico": "arterias pélvicas",
 
+    "musculos_cabeza": "músculos faciales y masticadores",
+    "musculos_cuello": "músculos cervicales y sus funciones",
+    "musculos_torax": "músculos intercostales y respiratorios",
     "musculos_abdomen": "músculos de la pared abdominal",
     "musculatura_abdominal": "función y organización muscular abdominal",
     "musculatura_respiratoria": "músculos respiratorios",
-    "musculatura_pelvica": "suelo pélvico"
+    "musculatura_pelvica": "suelo pélvico",
+
+    "plexo_lumbar": "formation de nervios, ramas y sus recurridos del plexo lumbar",
+    "plexo_sacro": "formación de nervios, ramas y sus recurridos del plexo sacro",
 }
 
 NEURO_DESCRIPTIONS = {
-    "medula_espinal": "segmentos, sustancia gris y blanca",
+    "medula_espinal": "LCR, segmentos, sustancia gris y blanca",
     "tronco_encefalico": "mesencéfalo, puente y bulbo",
     "bulbo_raquideo": "núcleos y funciones",
     "puente": "estructura y conexiones",
     "mesencefalo": "pedúnculos y colículos",
 
-    "cerebelo": "lóbulos y funciones motoras",
+    "cerebelo": "lóbulos y funciones",
     "diencefalo": "tálamo e hipotálamo",
     "talamus": "núcleos y funciones",
     "hipotalamo": "control autonómico",
 
     "telencefalo": "hemisferios cerebrales",
-    "corteza_cerebral": "áreas funcionales",
+    "corteza_cerebral": "áreas funcionales, giros y surcos",
     "lobulos_cerebrales": "división cortical",
     "ganglios_basales": "núcleos profundos",
 
@@ -177,19 +182,19 @@ NEURO_DESCRIPTIONS = {
     "vias_extrapiramidales": "control motor involuntario",
     "vias_sensitivas": "vías ascendentes",
 
-    "nervios_craneales": "pares craneales y funciones",
-    "nervio_olfatorio": "olfacción",
-    "nervio_optico": "visión",
-    "nervio_oculomotor": "movimientos oculares",
-    "nervio_troclear": "músculo oblicuo superior",
-    "nervio_trigemino": "sensibilidad facial",
-    "nervio_abducens": "músculo recto lateral",
-    "nervio_facial": "expresión facial",
-    "nervio_vestibulococlear": "audición y equilibrio",
-    "nervio_glosofaringeo": "deglución y gusto",
-    "nervio_vago": "inervación parasimpática",
-    "nervio_accesorio": "inervación de ECM y trapecio",
-    "nervio_hipogloso": "movimiento lingual",
+    "nervios_craneales": "pares craneales, trayectos y funciones",
+    "nervio_olfatorio": "via, trayectos y funciones",
+    "nervio_optico": "via, trayectos y funciones",
+    "nervio_oculomotor": "via, trayectos y funciones",
+    "nervio_troclear": "via, trayectos y funciones",
+    "nervio_trigemino": "via, trayectos y funciones",
+    "nervio_abducens": "via, trayectos y funciones",
+    "nervio_facial": "via, trayectos y funciones",
+    "nervio_vestibulococlear": "via, trayectos y funciones",
+    "nervio_glosofaringeo": "via, trayectos y funciones",
+    "nervio_vago": "via, trayectos y funciones",
+    "nervio_accesorio": "via, trayectos y funciones",
+    "nervio_hipogloso": "via, trayectos y funciones",
 
     "sistema_nervioso_autonomo": "simpático y parasimpático",
     "simpatico": "respuestas de alerta",
@@ -201,7 +206,7 @@ NEURO_DESCRIPTIONS = {
 
     "irrigacion_cerebral": "arterias cerebrales",
     "circulo_de_willis": "anastomosis arterial",
-    "senos_venosos": "drenaje venoso dural",
+    "senos_venosos": "drenaje venoso",
 
     "ojo": "estructura ocular",
     "oido": "oído externo, medio e interno",
@@ -215,8 +220,9 @@ NEURO_DESCRIPTIONS = {
 
     "sistema_vertebrobasilar": "arterias vertebrales y basilar",
 
-    "irrigacion_cerebral_detallada": "ramas arteriales cerebrales detalladas"
+    "irrigacion_cerebral_detallada": "ramas arteriales y sus porciones cerebrales detalladas"
 }
+
 
 ANATOMY_QUESTION = (
     "You are a senior medical professor specialized in Human Anatomy and an expert "
