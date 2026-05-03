@@ -1,3 +1,7 @@
+## v1.6.8
+
+- Changes on anatomy prompt to improve the question generation
+
 ## v1.6.7
 
 - Adjustments and validations to the subtopic list to improve the questions quality
