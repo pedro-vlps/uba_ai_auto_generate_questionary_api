@@ -1,3 +1,7 @@
+## v1.6.7
+
+- Adjustments and validations to the subtopic list to improve the questions quality
+
 ## v1.6.6
 
 - Added subtopics description to the questions and to the prompt
