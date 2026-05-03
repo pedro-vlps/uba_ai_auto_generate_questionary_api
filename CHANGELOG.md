@@ -1,3 +1,7 @@
+## v1.6.12
+
+- Changed the prompt logic to improve the questions quality
+
 ## v1.6.11
 
 - Increasing the quality of the prompt
