@@ -1,3 +1,7 @@
+## v1.6.9
+
+- Increasing the quality of the prompt
+
 ## v1.6.8
 
 - Changes on anatomy prompt to improve the question generation
