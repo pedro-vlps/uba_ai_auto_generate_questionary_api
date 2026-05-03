@@ -2,7 +2,7 @@
 
 from openai import OpenAI
 
-from src.helpers.questions_text import ANATOMY_QUESTION
+from src.helpers.questions_text import get_anatomy_question_prompt
 
 client = OpenAI()
 
@@ -29,33 +29,26 @@ class AIAnatomyService:
         Returns:
             Response: OpenAI response object containing the generated question
         """
-        # Format the prompt with the topic
-        formatted_question = ANATOMY_QUESTION.replace("{TOPIC}", parameter)
-
-        formatted_question = ANATOMY_QUESTION.replace("{SUB_TOPIC}", subtopic)
-
-        formatted_question = ANATOMY_QUESTION.replace(
-            "{SUBTOPIC_DESCRIPTION}", subtopic_description
-        )
-
-        formatted_question = ANATOMY_QUESTION.replace(
-            "{CORRECT_LETTER}", correct_letter
-        )
-
-        formatted_question = formatted_question.replace(
-            "{DIVERSITY_MODE}", diversity_mode
-        )
+        formatted_question = get_anatomy_question_prompt(parameter)
 
         if recent_questions:
-            formatted_question = formatted_question.replace(
-                "{RECENT_QUESTIONS}",
-                "\n".join(item.question for item in recent_questions),
+            recent_questions_text = "\n".join(
+                item.question for item in recent_questions
             )
         else:
-            formatted_question = formatted_question.replace(
-                "{RECENT_QUESTIONS}",
-                "There are no recent questions to avoid repetition.",
-            )
+            recent_questions_text = "There are no recent questions to avoid repetition."
+
+        prompt_variables = {
+            "{TOPIC}": parameter,
+            "{SUB_TOPIC}": subtopic,
+            "{SUBTOPIC_DESCRIPTION}": subtopic_description,
+            "{CORRECT_LETTER}": correct_letter,
+            "{DIVERSITY_MODE}": diversity_mode,
+            "{RECENT_QUESTIONS}": recent_questions_text,
+        }
+
+        for placeholder, value in prompt_variables.items():
+            formatted_question = formatted_question.replace(placeholder, value)
 
         # Use the AI model to generate a response based on the prompt
         response = client.responses.create(

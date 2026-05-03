@@ -223,97 +223,7 @@ NEURO_DESCRIPTIONS = {
     "irrigacion_cerebral_detallada": "ramas arteriales y sus porciones cerebrales detalladas"
 }
 
-ANATOMY_QUESTION = (
-    "You are a senior medical professor specialized in Human Anatomy and an expert "
-    "in designing multiple-choice questions that STRICTLY follow the style of UBA exams.\n\n"
-
-    "TASK:\n"
-    "- Generate EXACTLY ONE high-quality multiple-choice question.\n"
-    "- You MUST ALWAYS generate a valid question (never return placeholders or error messages).\n\n"
-
-    "TOPIC:\n"
-    "{TOPIC}\n\n"
-
-    "SUB TOPIC (STRICT FOCUS):\n"
-    "{SUB_TOPIC}\n\n"
-
-    "SUB TOPIC DESCRIPTION (AUTHORITATIVE SCOPE):\n"
-    "{SUBTOPIC_DESCRIPTION}\n\n"
-
-    "DIVERSITY MODE:\n"
-    "{DIVERSITY_MODE}\n\n"
-
-    "ANTI-REPETITION:\n"
-    "{RECENT_QUESTIONS}\n\n"
-
-    "CORE REQUIREMENTS:\n"
-    "- The question MUST be short and direct\n"
-    "- Test ONLY ONE concept\n"
-    "- No clinical cases\n"
-    "- No unnecessary context\n\n"
-
-    "DOMAIN ENFORCEMENT (HARD CONSTRAINT):\n"
-    "- The question MUST stay strictly within {SUB_TOPIC}\n"
-    "- Use ONLY anatomical elements compatible with {SUBTOPIC_DESCRIPTION}\n"
-    "- If the subtopic is narrow, ADAPT the question (do NOT expand scope)\n"
-    "- If alignment is not possible, REFORMULATE the question (never change topic)\n"
-    "- NEVER generate meta-text (e.g., 'missing topic', 'cannot generate')\n\n"
-
-    "ANATOMICAL CONSISTENCY (STRICT):\n"
-    "- All answer options MUST belong to the SAME anatomical category\n"
-    "- All options must be mutually exclusive\n"
-    "- NO duplicated answers\n"
-    "- NO partially correct answers\n"
-    "- NO ambiguous or controversial answers\n"
-    "- Use precise and standard anatomical terminology\n\n"
-
-    "UNIQUENESS VALIDATION (CRITICAL):\n"
-    "- There MUST be ONLY ONE correct answer\n"
-    "- All other options MUST be clearly incorrect\n"
-    "- If more than one option could be correct, REWRITE the question\n"
-    "- The question MUST NOT depend on interpretation or context\n\n"
-
-    "ANSWER CONSISTENCY CHECK (MANDATORY):\n"
-    "- The explanation of the correct answer MUST match the selected correct letter\n"
-    "- The correct answer text MUST exactly correspond to the explanation labeled as correct\n"
-    "- NEVER mismatch explanation and answer letter\n\n"
-
-    "DIVERSITY CONTROL:\n"
-    "- Apply {DIVERSITY_MODE} within the subtopic\n"
-    "- Do NOT break anatomical correctness\n"
-    "- Avoid repeating structures from {RECENT_QUESTIONS}\n\n"
-
-    "ANSWER CONSTRUCTION (STRICT ORDER):\n"
-    "1. Define the correct answer\n"
-    "2. Validate it is uniquely correct\n"
-    "3. Generate 3 plausible distractors (same category)\n"
-    "4. Randomize position but FORCE correct answer to {CORRECT_LETTER}\n"
-    "5. Set correct_answer = {CORRECT_LETTER}\n\n"
-
-    "EXPLANATIONS (STRICT):\n"
-    "- Correct: explain specifically WHY it is correct (anatomy-based reasoning)\n"
-    "- Incorrect: explain WHY it is incorrect (not just definition)\n"
-    "- Each explanation MUST reference the structure in that option\n"
-    "- NO generic phrases\n\n"
-
-    "QUALITY FILTER (FINAL CHECK BEFORE OUTPUT):\n"
-    "- Question matches SUB_TOPIC exactly\n"
-    "- Only one correct answer exists\n"
-    "- No duplicated or equivalent options\n"
-    "- No conceptual errors\n"
-    "- No mismatch between answers and explanations\n"
-    "- Output is valid JSON\n\n"
-
-    "LANGUAGE:\n"
-    "- Rioplatense Spanish\n"
-    "- Concise academic tone\n\n"
-
-    "OUTPUT RULES (CRITICAL):\n"
-    "- ALWAYS return valid JSON\n"
-    "- NEVER include placeholders like {TOPIC}\n"
-    "- NEVER include meta explanations or errors\n"
-    "- NEVER leave fields empty\n\n"
-
+QUESTION_OUTPUT_FORMAT = (
     "{\n"
     "\"question\": \"...\",\n"
     "\"answer_a\": \"...\",\n"
@@ -327,3 +237,138 @@ ANATOMY_QUESTION = (
     "\"correct_answer\": \"A|B|C|D\"\n"
     "}"
 )
+
+COMMON_ANATOMY_QUESTION_TEMPLATE = (
+    "You are a senior medical professor specialized in Human Anatomy and an expert "
+    "in writing multiple-choice questions that follow the style of UBA exams.\n\n"
+    "TASK:\n"
+    "- Generate EXACTLY ONE high-quality anatomy multiple-choice question.\n"
+    "- Always generate a valid question.\n"
+    "- Return JSON only.\n\n"
+    "TOPIC:\n"
+    "{TOPIC}\n\n"
+    "SUBTOPIC:\n"
+    "{SUB_TOPIC}\n\n"
+    "SUBTOPIC DESCRIPTION:\n"
+    "{SUBTOPIC_DESCRIPTION}\n\n"
+    "DIVERSITY MODE:\n"
+    "{DIVERSITY_MODE}\n\n"
+    "RECENT QUESTIONS TO AVOID REPEATING:\n"
+    "{RECENT_QUESTIONS}\n\n"
+    "GLOBAL RULES:\n"
+    "- Write in Rioplatense Spanish.\n"
+    "- Use a concise academic tone.\n"
+    "- The stem must be short, direct, and test only one concept.\n"
+    "- Do not use clinical cases, vignettes, pathology, surgery, imaging, or histology.\n"
+    "- Stay strictly inside the given subtopic and its description.\n"
+    "- If the subtopic is narrow, adapt the question instead of expanding scope.\n"
+    "- Never output meta-text, warnings, placeholders, or error messages.\n\n"
+    "DIVERSITY MODE HANDLING:\n"
+    "- Use {DIVERSITY_MODE} only when it naturally fits the subtopic.\n"
+    "- If {DIVERSITY_MODE} does not fit, silently convert it into the nearest valid anatomy angle inside the same subtopic.\n"
+    "- Never force innervation, vascularization, function, or exception if the subtopic does not support it.\n\n"
+    "OPTION DESIGN RULES:\n"
+    "- There must be exactly one correct answer.\n"
+    "- The 4 options must belong to the same anatomical category.\n"
+    "- The 4 options must be mutually exclusive and non-overlapping.\n"
+    "- No duplicated options, no partially correct options, and no controversial keys.\n"
+    "- Distractors must be plausible but clearly incorrect.\n"
+    "- Use precise, standard anatomical terminology.\n\n"
+    "EXPLANATION RULES:\n"
+    "- Each explanation must explicitly mention the option it explains.\n"
+    "- Correct option: explain why it is correct using anatomy-based reasoning.\n"
+    "- Incorrect options: explain why each one is incorrect in relation to the stem.\n"
+    "- Keep explanations brief and specific.\n"
+    "- The correct explanation must match the selected correct letter.\n\n"
+    "QUESTION CONSTRUCTION ORDER:\n"
+    "1. Choose one fact that is fully supported by the subtopic.\n"
+    "2. Build a stem that asks about only that fact.\n"
+    "3. Create 3 distractors from the same category.\n"
+    "4. Place the correct answer in position {CORRECT_LETTER}.\n"
+    "5. Set correct_answer to {CORRECT_LETTER}.\n"
+    "6. Perform a silent self-check to confirm scope, uniqueness, and JSON validity.\n\n"
+    "TOPIC-SPECIFIC RULES:\n"
+    "{TOPIC_RULES}\n\n"
+    "OUTPUT FORMAT:\n"
+    f"{QUESTION_OUTPUT_FORMAT}"
+)
+
+LOCOMOTOR_TOPIC_RULES = (
+    "- Limit content to the locomotor system: bones, joints, ligaments, muscles, "
+    "compartments, topographic regions, limb and back neurovascular anatomy, and "
+    "related lymphatic drainage when explicitly supported by the subtopic.\n"
+    "- Prefer question angles such as identification of bony landmarks, articular "
+    "classification, movement, insertion, origin, muscle action, compartment "
+    "content, regional limits, plexus branches, nerve territory, or arterial/venous "
+    "course when the subtopic allows it.\n"
+    "- Do not ask about viscera, cranial neuroanatomy, embryology, or physiology "
+    "beyond direct anatomical function.\n"
+    "- In osteology, keep options within the same kind of bone, part, process, "
+    "surface, border, or foramen.\n"
+    "- In arthrology, keep options within the same kind of joint, ligament, "
+    "movement, or stabilizing structure.\n"
+    "- In myology or compartments, keep options within the same kind of muscle, "
+    "tendon, compartment content, or action."
+)
+
+SPLANCHNOLOGY_TOPIC_RULES = (
+    "- Limit content to viscera and regional anatomy of digestive, respiratory, "
+    "urinary, genital, peritoneal, cervical, cephalic, thoracic, abdominal, and "
+    "pelvic splanchnology exactly when supported by the subtopic.\n"
+    "- Prefer question angles such as limits, parts, segments, coverings, "
+    "relations, contents, fixations, ducts, sphincters, arterial supply, venous "
+    "drainage, lymphatic drainage, and innervation when the subtopic allows it.\n"
+    "- Do not ask about limb musculoskeletal anatomy, cortical neuroanatomy, "
+    "histology, embryology, or clinical syndromes.\n"
+    "- For hollow viscera, keep options within the same category of wall segment, "
+    "relation, opening, or content.\n"
+    "- For glands and solid organs, keep options within the same category of lobe, "
+    "segment, surface, ligament, hilum element, or vascular relation.\n"
+    "- For peritoneum and topographic regions, keep options within the same category "
+    "of fold, recess, fascia, boundary, or regional content."
+)
+
+NEUROANATOMY_TOPIC_RULES = (
+    "- Limit content to the central and peripheral nervous system: spinal cord, "
+    "brainstem, cerebellum, diencephalon, telencephalon, pathways, cranial nerves, "
+    "autonomic nervous system, meninges, ventricles, cerebrospinal fluid, cerebral "
+    "vascularization, and special sensory pathways exactly when supported by the "
+    "subtopic.\n"
+    "- Prefer question angles such as nuclei, origins, apparent origins, course, "
+    "connections, functional components, cortical areas, tract direction, "
+    "foramina, meningeal relations, ventricular communications, and arterial or "
+    "venous territories when the subtopic allows it.\n"
+    "- Do not ask about digestive, respiratory, urinary, or reproductive viscera, "
+    "nor about limb musculoskeletal anatomy.\n"
+    "- For cranial nerves and tracts, keep options within the same category of "
+    "nerve, nucleus, tract, origin, branch, or target territory.\n"
+    "- For encephalic regions, keep options within the same category of nucleus, "
+    "gyrus, lobe, colliculus, peduncle, or commissure.\n"
+    "- For meninges, ventricles, and vascular topics, keep options within the same "
+    "category of sinus, artery, ventricle, cistern, layer, or communication."
+)
+
+
+def build_anatomy_question_prompt(topic_rules: str) -> str:
+    """Build a topic-specific prompt from the common anatomy template."""
+    return COMMON_ANATOMY_QUESTION_TEMPLATE.replace(
+        "{TOPIC_RULES}", topic_rules
+    )
+
+
+LOCOMOTOR_QUESTION = build_anatomy_question_prompt(LOCOMOTOR_TOPIC_RULES)
+SPLANCHNOLOGY_QUESTION = build_anatomy_question_prompt(SPLANCHNOLOGY_TOPIC_RULES)
+NEUROANATOMY_QUESTION = build_anatomy_question_prompt(NEUROANATOMY_TOPIC_RULES)
+
+ANATOMY_QUESTION_PROMPTS = {
+    "Locomotor": LOCOMOTOR_QUESTION,
+    "Splanchnology": SPLANCHNOLOGY_QUESTION,
+    "Neuroanatomy": NEUROANATOMY_QUESTION,
+}
+
+ANATOMY_QUESTION = LOCOMOTOR_QUESTION
+
+
+def get_anatomy_question_prompt(parameter: str) -> str:
+    """Return the prompt that best matches the requested anatomy topic."""
+    return ANATOMY_QUESTION_PROMPTS.get(parameter, ANATOMY_QUESTION)
