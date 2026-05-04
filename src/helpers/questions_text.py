@@ -265,7 +265,7 @@ COMMON_ANATOMY_QUESTION_TEMPLATE = (
     "- Never output meta-text, warnings, placeholders, or error messages.\n\n"
     "DIVERSITY MODE HANDLING:\n"
     "- Use {DIVERSITY_MODE} only when it naturally fits the subtopic.\n"
-    "- If {DIVERSITY_MODE} does not fit, silently convert it into the nearest valid anatomy angle inside the same subtopic.\n"
+    "- If {DIVERSITY_MODE} does not fit, silently convert it into the nearest valid anatomy angle inside the same subtopic.\n" # pylint: disable=line-too-long
     "- Never force innervation, vascularization, function, or exception if the subtopic does not support it.\n\n"
     "OPTION DESIGN RULES:\n"
     "- There must be exactly one correct answer.\n"
